@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cinephile.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200312111049_MyFirstMigration")]
-    partial class MyFirstMigration
+    [Migration("20200320080727_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
