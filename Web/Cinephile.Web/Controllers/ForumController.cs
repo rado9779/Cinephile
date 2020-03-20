@@ -1,16 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Cinephile.Web.Controllers
+﻿namespace Cinephile.Web.Controllers
 {
+    using Cinephile.Services.Data;
+    using Cinephile.Web.ViewModels.Forum;
+    using Microsoft.AspNetCore.Mvc;
+
     public class ForumController : BaseController
     {
+        private readonly ICategoriesService categoriesService;
+
+        public ForumController(ICategoriesService categoriesService)
+        {
+            this.categoriesService = categoriesService;
+        }
+
         public IActionResult Index()
         {
-            return this.View();
+            var viewModel = new IndexViewModel
+            {
+                Categories =
+                   this.categoriesService.GetAll<IndexCategoryViewModel>(),
+            };
+
+            return this.View(viewModel);
         }
 
         public IActionResult Rules()
