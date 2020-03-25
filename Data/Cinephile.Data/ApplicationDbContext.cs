@@ -32,6 +32,12 @@
 
         public DbSet<Post> Posts { get; set; }
 
+        public DbSet<Actor> Actors { get; set; }
+
+        public DbSet<Movie> Movies { get; set; }
+
+        public DbSet<TVShow> TVShows { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
