@@ -3,65 +3,66 @@
 @{
     this.ViewData["Title"] = "Forum";
 }
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">Bar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <a class="navbar-brand" href="#">Bar</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarColor01">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link text-white" asp-area="" asp-controller="Forum" asp-action="Index">Forum</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Movies</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" asp-area="" asp-controller="Forum" asp-action="Rules">Rules</a>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </div>
-        </nav>
-    </header>
-    <p>
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Forum" asp-action="Index">Forum</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Movies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Forum" asp-action="Rules">Rules</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
+        </header>
+        <p>
 
-    </p>
-    <table class="table table-info">
-        <thead>
-            <tr>
-                <th scope="col">Categories</th>
-                <th scope="col">Title</th>
-                <th scope="col">Genre</th>
-                <th scope="col">Link</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var category in Model.Categories)
-            {
-                <tr class="table-dark">
-                    <td>
-                        <a href="@category.Url">
-                            @category.Title
-                        </a>
-                    </td>
-                    <th scope="row">@category.Name</th>
-                    <td>Name</td>
-                    <td>Genre</td>
+        </p>
+        <table class="table table-info">
+            <thead>
+                <tr>
+                    <th scope="col">Categories</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Link</th>
                 </tr>
-            }
-            <tr class="table-danger">
-                <th scope="row">Dark</th>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-        </tbody>
-    </table>
-</body>
+            </thead>
+            <tbody>
+                @foreach (var category in Model.Categories)
+                {
+                    <tr class="table-dark">
+                        <td>
+                            <a href="@category.Url">
+                                @category.Title
+                            </a>
+                        </td>
+                        <th scope="row">@category.Name</th>
+                        <td>Name</td>
+                        <td>Genre</td>
+                    </tr>
+                }
+                <tr class="table-danger">
+                    <th scope="row">Dark</th>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+            </tbody>
+        </table>
+            <a class="btn btn-primary" asp-area="" asp-controller="Posts" asp-action="Create">Create Post</a>
+    </body>
