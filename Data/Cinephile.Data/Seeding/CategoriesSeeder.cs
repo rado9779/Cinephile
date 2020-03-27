@@ -16,7 +16,7 @@
                 return;
             }
 
-            var categories = new List<string>() { "Movies", "TV-Series", "Actors" };
+            var categories = new List<string>() { "Movies", "TV-Series", "Actors", "Funny", "News", "Meetings" };
 
             foreach (var category in categories)
             {
