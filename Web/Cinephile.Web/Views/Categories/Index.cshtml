@@ -1,0 +1,27 @@
+﻿@model Cinephile.Web.ViewModels.Categories.AllCategoriesViewModel
+@{
+    this.ViewData["Title"] = "Categories";
+}
+
+<div class="text-center ">
+    <h1 class="display-3">@this.ViewData["Title"]</h1>
+</div>
+
+<p>
+
+</p>
+
+<div class="row">
+    @foreach (var category in Model.Categories)
+    {
+        <div class="col-md-4 media">
+            <div class="media-body">
+            <img src="@category.ImageUrl" width="150" class="mr-3" alt="@category.Title">
+            <h5 class="mt-0">
+                <a href="@category.Url">@category.Title</a>
+            </h5>
+            </div>
+        </div>
+    }
+</div>
+
