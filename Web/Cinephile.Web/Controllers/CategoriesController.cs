@@ -20,12 +20,12 @@
             var viewModel = new AllCategoriesViewModel
             {
                 Categories =
-                    this.categoriesService.GetAll<CategoryViewModel>(),
+                    this.categoriesService.GetAll<CategoryIndexViewModel>(),
             };
             return this.View(viewModel);
         }
 
-        public IActionResult ByName(string name)
+        public IActionResult GetCategory(string name)
         {
             var viewModel =
                 this.categoriesService.GetByName<CategoryViewModel>(name);

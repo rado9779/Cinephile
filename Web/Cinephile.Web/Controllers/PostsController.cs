@@ -42,8 +42,10 @@
         [Authorize]
         public IActionResult Create()
         {
+            var categories = this.categoriesService.GetAll<PostCategoriesViewModel>();
             var viewModel = new PostInputModel
             {
+                Categories = categories,
             };
             return this.View(viewModel);
         }

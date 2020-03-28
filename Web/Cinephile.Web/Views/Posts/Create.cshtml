@@ -1,23 +1,28 @@
 ﻿@model Cinephile.Web.ViewModels.Posts.PostInputModel
+@{
+    var categories = Model.Categories.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+}
 
-    <form method="post" asp-action="Create">
-        <div>
-            <label asp-for="Title"></label>
-            <input asp-for="Title" class="form-control" />
-            <span asp-validation-for="Title" class="text-danger"></span>
-        </div>
 
-        <div>
-            <label asp-for="Content"></label>
-            <textarea asp-for="Content" class="form-control"></textarea>
-            <span asp-validation-for="Content" class="text-danger"></span>
-        </div>
-        <div>
-            <label asp-for="CategoryId"></label>
-            <textarea asp-for="CategoryId" class="form-control"></textarea>
-            <span asp-validation-for="CategoryId" class="text-danger"></span>
-        </div>
-        <hr/>
-        <input type="submit" class="btn btn-primary" value="Submit"/>
-        <a class="btn btn-success" asp-controller="Forum" asp-action="Index">Back</a>
-    </form>
+<form method="post" asp-action="Create">
+    <hr />
+    <div>
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Content"></label>
+        <textarea asp-for="Content" class="form-control"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="CategoryId"></label>
+        <select asp-for="CategoryId" asp-items="categories" class="form-control"></select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+    <hr />
+    <input type="submit" class="btn btn-primary" value="Submit" />
+    <a class="btn btn-success" asp-controller="Forum" asp-action="Index">Back</a>
+</form>
