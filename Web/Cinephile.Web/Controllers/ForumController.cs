@@ -2,23 +2,23 @@
 {
     using Cinephile.Services.Data;
     using Cinephile.Web.ViewModels.Forum;
+    using Cinephile.Web.ViewModels.Posts;
     using Microsoft.AspNetCore.Mvc;
 
     public class ForumController : BaseController
     {
-        private readonly ICategoriesService categoriesService;
+        private readonly IPostsService postsService;
 
-        public ForumController(ICategoriesService categoriesService)
+        public ForumController(IPostsService postsService)
         {
-            this.categoriesService = categoriesService;
+            this.postsService = postsService;
         }
 
         public IActionResult Index()
         {
-            var viewModel = new IndexViewModel
+            var viewModel = new AllPostsViewModel
             {
-                Categories =
-                   this.categoriesService.GetAll<IndexCategoryViewModel>(),
+                Posts = this.postsService.GetAll<PostViewModel>(),
             };
 
             return this.View(viewModel);
