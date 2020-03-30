@@ -1,5 +1,6 @@
 ﻿namespace Cinephile.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -23,6 +24,7 @@
                 Title = title,
                 Content = content,
                 CategoryId = categoryId,
+                UserId = userId,
             };
 
             await this.postsRepository.AddAsync(post);
@@ -36,6 +38,21 @@
             var post = this.postsRepository.All().Where(x => x.Id == id)
                 .To<T>().FirstOrDefault();
             return post;
+        }
+
+        public IEnumerable<T> GetAll<T>(int? count = null)
+        {
+            IQueryable<Post> query =
+                this.postsRepository
+                .All()
+                .Take(5);
+
+            if (count.HasValue)
+            {
+                query = query.Take(count.Value);
+            }
+
+            return query.To<T>().ToList();
         }
     }
 }
