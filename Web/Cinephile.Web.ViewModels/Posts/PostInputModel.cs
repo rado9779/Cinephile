@@ -14,7 +14,6 @@
         [Required]
         public string Content { get; set; }
 
-        [Display(Name = "Category")]
         public int CategoryId { get; set; }
 
         public IEnumerable<PostCategoriesViewModel> Categories { get; set; }

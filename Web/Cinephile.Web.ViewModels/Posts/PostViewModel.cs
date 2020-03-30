@@ -20,6 +20,8 @@
 
         public int VotesCount { get; set; }
 
+        public Category Category { get; set; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Post, PostViewModel>();
