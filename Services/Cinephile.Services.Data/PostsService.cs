@@ -44,8 +44,7 @@
         {
             IQueryable<Post> query =
                 this.postsRepository
-                .All()
-                .Take(5);
+                .All();
 
             if (count.HasValue)
             {
