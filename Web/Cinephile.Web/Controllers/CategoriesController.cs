@@ -1,9 +1,7 @@
 ﻿namespace Cinephile.Web.Controllers
 {
     using Cinephile.Services.Data;
-    using Cinephile.Web.ViewModels.Administration.Dashboard;
     using Cinephile.Web.ViewModels.Categories;
-    using Cinephile.Web.ViewModels.Forum;
     using Microsoft.AspNetCore.Mvc;
 
     public class CategoriesController : Controller
@@ -29,6 +27,12 @@
         {
             var viewModel =
                 this.categoriesService.GetByName<CategoryViewModel>(name);
+
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
             return this.View(viewModel);
         }
     }
