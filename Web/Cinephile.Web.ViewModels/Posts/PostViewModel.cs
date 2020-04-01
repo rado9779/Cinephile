@@ -12,6 +12,8 @@
 
         public DateTime CreatedOn { get; set; }
 
+        public string FormattedDate => this.CreatedOn.Date.ToString("dd/MM/yyyy");
+
         public string Title { get; set; }
 
         public string Content { get; set; }
@@ -21,6 +23,8 @@
         public int VotesCount { get; set; }
 
         public Category Category { get; set; }
+
+        public string CategoryUrl => $"/{this.Category.Name}";
 
         public void CreateMappings(IProfileExpression configuration)
         {
