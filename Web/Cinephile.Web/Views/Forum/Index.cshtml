@@ -36,20 +36,20 @@
 <table class="table table-info">
     <thead>
         <tr>
-            <th scope="col">Category</th>
             <th scope="col">Title</th>
+            <th bgcolor="#ff0080">Category</th>
             <th scope="col">User</th>
             <th scope="col">Date</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var post in Model.Posts.OrderBy(x => x.VotesCount))
+        @foreach (var post in Model.Posts.OrderByDescending(x => x.CreatedOn).Take(5))
         {
             <tr class="table-dark">
-                <td>@post.Category.Name</td>
-                <th scope="row">@post.Title</th>
+                <td><a href="/Posts/ById/@post.Id"><font color="#ffffff">@post.Title</font></a></td>
+                <td><a href="@post.CategoryUrl" class="btn btn-outline-danger">@post.Category.Name</a></td>
                 <td>@post.UserUserName</td>
-                <td>@post.CreatedOn.Date</td>
+                <td>@post.FormattedDate</td>
             </tr>
         }
     </tbody>
@@ -68,13 +68,13 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var post in Model.Posts.OrderBy(x => x.CreatedOn))
+        @foreach (var post in Model.Posts.OrderBy(x => x.CreatedOn).Take(5))
         {
             <tr class="table-dark">
                 <td>@post.Category.Name</td>
                 <th scope="row">@post.Title</th>
                 <td>@post.UserUserName</td>
-                <td>@post.CreatedOn</td>
+                <td>@post.FormattedDate</td>
             </tr>
         }
     </tbody>
