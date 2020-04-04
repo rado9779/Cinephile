@@ -3,5 +3,35 @@
     ViewData["Title"] = "ActorsIndex";
 }
 
-<h1>ActorsIndex</h1>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">Actors</a>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<hr />
+
+<div class="row">
+    @for (int i = 0; i < 4; i++)
+    {
+        <div class="col-md-4 media">
+            <div class="media-body">
+                <div class="card bg-info text-black-50">
+                    <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Brad_Pitt_2019_by_Glenn_Francis.jpg/330px-Brad_Pitt_2019_by_Glenn_Francis.jpg" alt="Card image cap" height="277" width="200">
+                    <div class="card-body">
+                        <h5 class="card-title">Brad Pitt</h5>
+                    </div>
+                </div>
+                <p></p>
+            </div>
+        </div>
+    }
+</div>
+
+
 
