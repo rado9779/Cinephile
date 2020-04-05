@@ -3,8 +3,8 @@
     ViewData["Title"] = "ActorsIndex";
 }
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">Actors</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <a class="navbar-brand" href="/Actors/ActorsIndex">Actors</a>
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
         </ul>
@@ -17,14 +17,14 @@
 <hr />
 
 <div class="row">
-    @for (int i = 0; i < 4; i++)
+    @for (int i = 0; i < 8; i++)
     {
-        <div class="col-md-4 media">
+        <div class="col-md-3 media">
             <div class="media-body">
-                <div class="card bg-info text-black-50">
-                    <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Brad_Pitt_2019_by_Glenn_Francis.jpg/330px-Brad_Pitt_2019_by_Glenn_Francis.jpg" alt="Card image cap" height="277" width="200">
+                <div class="card bg-info">
+                    <img class="card-img-top" src="https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTY3MDUxMjkzMjI1OTIwMTcz/brad-pitt-attends-the-premiere-of-20th-century-foxs--square.jpg" alt="Card image cap" height="200" width="200">
                     <div class="card-body">
-                        <h5 class="card-title">Brad Pitt</h5>
+                        <p style="color:black;">Thassapak Hsu</p>
                     </div>
                 </div>
                 <p></p>
@@ -32,6 +32,7 @@
         </div>
     }
 </div>
+
 
 
 
