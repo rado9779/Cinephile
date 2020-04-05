@@ -27,25 +27,21 @@
         </div>
 
         <div class="col-md-40 media-body">
-            <div class="card-deck">
-                <div class="card bg-info text-black-50">
-                    <img class="card-img-top" src="https://image.tmdb.org/t/p/w220_and_h330_face/5vHssUeVe25bMrof1HyaPyWgaP.jpg" alt="Card image cap" height="277" width="200">
-                    <div class="card-body">
-                        <h5 class="card-title">John Wick</h5>
+            <div class="row">
+                @for (int i = 0; i < 7; i++)
+                {
+                    <div class="col-md-4 media">
+                        <div class="media-body">
+                            <div class="card bg-info">
+                                <img class="card-img-top" src="https://image.tmdb.org/t/p/w220_and_h330_face/s5HQf2Gb3lIO2cRcFwNL9sn1o1o.jpg" alt="Card image cap" height="200" width="200">
+                                <div class="card-body">
+                                    <p style="color:black;">Transformers</p>
+                                </div>
+                            </div>
+                            <p></p>
+                        </div>
                     </div>
-                </div>
-                <div class="card bg-info text-black-50">
-                    <img class="card-img-top" src="https://image.tmdb.org/t/p/w220_and_h330_face/5vHssUeVe25bMrof1HyaPyWgaP.jpg" alt="Card image cap" height="277" width="200">
-                    <div class="card-body">
-                        <h5 class="card-title">John Wick</h5>
-                    </div>
-                </div>
-                <div class="card bg-info text-black-50">
-                    <img class="card-img-top" src="https://image.tmdb.org/t/p/w220_and_h330_face/5vHssUeVe25bMrof1HyaPyWgaP.jpg" alt="Card image cap" height="277" width="200">
-                    <div class="card-body">
-                        <h5 class="card-title">John Wick</h5>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
