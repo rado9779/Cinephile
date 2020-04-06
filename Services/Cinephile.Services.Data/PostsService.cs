@@ -53,5 +53,25 @@
 
             return query.To<T>().ToList();
         }
+
+        public IEnumerable<T> GetByCategoryId<T>(int categoryId, int? take = null, int skip = 0)
+        {
+            var query = this.postsRepository
+                .All()
+                .OrderByDescending(x => x.CreatedOn)
+                .Where(x => x.CategoryId == categoryId)
+                .Skip(skip);
+            if (take.HasValue)
+            {
+                query = query.Take(take.Value);
+            }
+
+            return query.To<T>().ToList();
+        }
+
+        public int GetCountByCategoryId(int categoryId)
+        {
+            return this.postsRepository.All().Count(x => x.CategoryId == categoryId);
+        }
     }
 }

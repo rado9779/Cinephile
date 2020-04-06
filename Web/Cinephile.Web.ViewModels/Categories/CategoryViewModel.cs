@@ -15,6 +15,10 @@
 
         public string ImageUrl { get; set; }
 
+        public int CurrentPage { get; set; }
+
+        public int PagesCount { get; set; }
+
         public IEnumerable<CategoryPostsViewModel> Posts { get; set; }
     }
 }
