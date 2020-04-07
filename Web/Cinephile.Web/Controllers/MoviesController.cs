@@ -1,12 +1,17 @@
 ﻿namespace Cinephile.Web.Controllers
 {
+    using Cinephile.Web.ViewModels.Movies;
     using Microsoft.AspNetCore.Mvc;
 
     public class MoviesController : Controller
     {
         public IActionResult MoviesIndex()
         {
-            return this.View();
+            var viewModel = new AllMoviesViewModel()
+            {
+
+            };
+            return this.View(viewModel);
         }
 
         public IActionResult MovieView()
