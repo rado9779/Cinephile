@@ -4,6 +4,8 @@
 
     public interface IUsersService
     {
-        IEnumerable<T> GetAllUserPosts<T>(string userId);
+        T GetUserByName<T>(string name);
+
+        IEnumerable<T> GetAllUserPosts<T>(string username);
     }
 }
