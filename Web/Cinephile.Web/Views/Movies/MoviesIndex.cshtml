@@ -29,14 +29,14 @@
 
         <div class="col-md-40 media-body">
             <div class="row">
-                @for (int i = 0; i < 7; i++)
+                @foreach (var movie in Model.Movies)
                 {
                     <div class="col-md-4 media">
                         <div class="media-body">
                             <div class="card bg-info">
-                                <img class="card-img-top" src="https://image.tmdb.org/t/p/w220_and_h330_face/s5HQf2Gb3lIO2cRcFwNL9sn1o1o.jpg" alt="Card image cap" height="200" width="200">
+                                <img class="card-img-top" src="@movie.ImageUrl" alt="Card image cap" height="200" width="200">
                                 <div class="card-body">
-                                    <p style="color:black;">Transformers</p>
+                                    <p style="color:black;">@movie.Title</p>
                                 </div>
                             </div>
                             <p></p>
