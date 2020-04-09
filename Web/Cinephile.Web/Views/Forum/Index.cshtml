@@ -45,12 +45,12 @@
     <tbody>
         @foreach (var post in Model.Posts.OrderByDescending(x => x.CreatedOn).Take(5))
         {
-        <tr class="table-dark">
-            <td><a href="/Posts/ById/@post.Id"><font color="#ffffff">@post.Title</font></a></td>
-            <td><a href="@post.CategoryUrl" class="btn btn-outline-danger">@post.Category.Name</a></td>
-            <td><a class="nav-link text-white" asp-controller="Users" asp-action="UserPosts">@post.UserUserName</a></td>
-            <td>@post.FormattedDate</td>
-        </tr>
+            <tr class="table-dark">
+                <td><a href="/Posts/ById/@post.Id"><font color="#ffffff">@post.Title</font></a></td>
+                <td><a href="@post.CategoryUrl" class="btn btn-outline-danger">@post.Category.Name</a></td>
+                <td><a href="/Users/UserPosts/?username=@post.UserUserName"><font color="#ffffff">@post.UserUserName</font></a></td>
+                <td>@post.FormattedDate</td>
+            </tr>
         }
     </tbody>
 </table>
