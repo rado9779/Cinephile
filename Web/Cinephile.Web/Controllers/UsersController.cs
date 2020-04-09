@@ -2,6 +2,7 @@
 {
     using Cinephile.Data.Models;
     using Cinephile.Services.Data;
+    using Cinephile.Services.Mapping;
     using Cinephile.Web.ViewModels.Posts;
     using Cinephile.Web.ViewModels.Users;
     using Microsoft.AspNetCore.Identity;
@@ -16,14 +17,18 @@
             this.usersService = usersService;
         }
 
-        public IActionResult UserPosts(string userId)
+        public IActionResult UserPosts(string username)
         {
-            var userPosts = this.usersService.GetAllUserPosts<UserPostsViewModel>(userId);
+            var viewModel =
+              this.usersService.GetUserByName<UserViewModel>(username);
 
-            var viewModel = new UserViewModel
+            if (viewModel == null)
             {
-                UserPosts = userPosts,
-            };
+                return this.NotFound();
+            }
+
+            viewModel.UserPosts = this.usersService.GetAllUserPosts<UserPostsViewModel>(username);
+
             return this.View(viewModel);
         }
     }
