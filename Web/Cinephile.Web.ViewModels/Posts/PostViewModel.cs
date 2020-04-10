@@ -1,6 +1,7 @@
 ﻿namespace Cinephile.Web.ViewModels.Posts
 {
     using System;
+    using System.Collections.Generic;
 
     using AutoMapper;
     using Cinephile.Data.Models;
@@ -25,6 +26,8 @@
         public Category Category { get; set; }
 
         public string CategoryUrl => $"/{this.Category.Name}";
+
+        public IEnumerable<PostCommentsViewModel> Comments { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {
