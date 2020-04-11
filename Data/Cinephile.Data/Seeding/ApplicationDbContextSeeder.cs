@@ -28,7 +28,7 @@
                               new RolesSeeder(),
                               new SettingsSeeder(),
                               new CategoriesSeeder(),
-                              new MoviesSeeder(),
+                              //new MoviesSeeder(),
                           };
 
             foreach (var seeder in seeders)
