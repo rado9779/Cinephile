@@ -86,6 +86,18 @@
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
+
+            builder.Entity<Actor>()
+                 .HasMany(x => x.Movies);
+
+            builder.Entity<Actor>()
+                 .HasMany(x => x.TVShows);
+
+            builder.Entity<Movie>()
+                 .HasMany(x => x.Actors);
+
+            builder.Entity<TVShow>()
+                 .HasMany(x => x.Actors);
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
