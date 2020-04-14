@@ -5,6 +5,7 @@
     using Cinephile.Web.ViewModels.Posts;
     using Microsoft.AspNetCore.Mvc;
 
+    [Area("Forum")]
     public class ForumController : BaseController
     {
         private readonly IPostsService postsService;

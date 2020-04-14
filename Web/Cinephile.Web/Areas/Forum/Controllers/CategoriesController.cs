@@ -6,6 +6,7 @@
     using Cinephile.Web.ViewModels.Categories;
     using Microsoft.AspNetCore.Mvc;
 
+    [Area("Forum")]
     public class CategoriesController : Controller
     {
         private const int ItemsPerPage = 5;
@@ -29,10 +30,10 @@
             return this.View(viewModel);
         }
 
-        public IActionResult CategoryByName(string name, int page = 1)
+        public IActionResult CategoryByName(string categoryName, int page = 1)
         {
             var viewModel =
-               this.categoriesService.GetByName<CategoryViewModel>(name);
+               this.categoriesService.GetByName<CategoryViewModel>(categoryName);
             if (viewModel == null)
             {
                 return this.NotFound();

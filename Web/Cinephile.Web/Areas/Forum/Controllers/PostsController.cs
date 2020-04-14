@@ -11,6 +11,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
+    [Area("Forum")]
     public class PostsController : Controller
     {
         private readonly IPostsService postsService;
