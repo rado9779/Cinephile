@@ -1,5 +1,6 @@
 ﻿namespace Cinephile.Web
 {
+    using System.IO;
     using System.Reflection;
 
     using Cinephile.Data;
@@ -19,6 +20,7 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.FileProviders;
     using Microsoft.Extensions.Hosting;
 
     public class Startup
@@ -113,6 +115,13 @@
                         endpoints.MapControllerRoute("forumCategories", "/{name:minlength(3)}", new { controller = "Categories", action = "CategoryByName" });
                         endpoints.MapRazorPages();
                     });
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/CinephileStaticFiles/CategoriesIcons")),
+                RequestPath = "/StaticFiles",
+            });
         }
     }
 }

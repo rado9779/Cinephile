@@ -16,16 +16,22 @@
                 return;
             }
 
-            var categories = new List<string>() { "Movies", "TV-Series", "Actors", "Funny", "News", "Meetings" };
+            var categories = new List<(string Name, string ImageUrl)>
+            {
+                ("Funny", "/StaticFiles/bring.png"),
+                ("Actors", "/StaticFiles/actor.png"),
+                ("Meetings", "/StaticFiles/teamwork.png"),
+                ("Movies", "/StaticFiles/cinema.png"),
+                ("TV-Series", "/StaticFiles/television.png"),
+                ("News", "/StaticFiles/newspaper.png"),
+            };
 
             foreach (var category in categories)
             {
                 await dbContext.Categories.AddAsync(new Category
                 {
-                    Name = category,
-                    Title = category,
-                    Description = category,
-                    ImageUrl = category,
+                    Name = category.Name,
+                    ImageUrl = category.ImageUrl,
                 });
             }
         }
