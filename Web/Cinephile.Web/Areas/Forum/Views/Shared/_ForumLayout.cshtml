@@ -38,22 +38,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Forum" asp-controller="Forum" asp-action="Index">Forum</a>
-                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <table>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">Bar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarColor01">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+            <div class="container d-flex justify-content-center">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link text-white" asp-area="Forum" asp-controller="Forum" asp-action="Index">Forum</a>
@@ -65,13 +57,15 @@
                         <a class="nav-link text-white" asp-area="Forum" asp-controller="Forum" asp-action="Rules">Rules</a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                <form  class="form-inline" asp-controller="Posts" asp-action="PostsByTitle">
+                    <p>
+                        <input class="form-control" type="text" name="title"  placeholder="Search Post">
+                        <input class="btn btn-secondary"  type="submit" value="Search" />
+                    </p>
                 </form>
             </div>
         </nav>
-    </table>
+    </header>
 
     <div class="container">
         <partial name="_CookieConsentPartial" />

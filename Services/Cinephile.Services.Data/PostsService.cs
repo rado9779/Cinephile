@@ -73,5 +73,14 @@
         {
             return this.postsRepository.All().Count(x => x.CategoryId == categoryId);
         }
+
+        public IEnumerable<T> GetByTitle<T>(string title)
+        {
+            IQueryable<Post> query = this.postsRepository
+                 .All()
+                 .Where(x => x.Title.Contains(title));
+
+            return query.To<T>().ToList();
+        }
     }
 }

@@ -22,6 +22,11 @@
                 Posts = this.postsService.GetAll<PostViewModel>(),
             };
 
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
             return this.View(viewModel);
         }
 

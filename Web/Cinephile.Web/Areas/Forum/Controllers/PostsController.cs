@@ -65,5 +65,20 @@
             var postId = await this.postsService.Create(input.Title, input.Content, input.CategoryId, user.Id);
             return this.RedirectToAction(nameof(this.ById), new { id = postId });
         }
+
+        public IActionResult PostsByTitle(string title)
+        {
+            var viewModel = new AllPostsViewModel
+            {
+                Posts = this.postsService.GetByTitle<PostViewModel>(title),
+            };
+
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
+            return this.View(viewModel);
+        }
     }
 }
