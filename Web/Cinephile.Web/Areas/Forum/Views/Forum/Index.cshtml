@@ -3,41 +3,24 @@
 @{
     this.ViewData["Title"] = "Forum";
 }
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">Bar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link text-white" asp-area="Forum" asp-controller="Forum" asp-action="Index">Forum</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link text-white" asp-area="Forum" asp-controller="Categories" asp-action="AllCategories">Categories</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" asp-area="Forum" asp-controller="Forum" asp-action="Rules">Rules</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
-    </nav>
-</header>
-<p></p>
-<ol class="breadcrumb">
+<div class="table-dark">
+    <hr />
+    <h1 class="display-3 text-center">Welcome to Cinephile Forum!</h1>
+    <hr />
+</div>
+
+<hr />
+
+<ol class="breadcrumb bg-light">
     <li class="breadcrumb-item active">Recent Posts</li>
 </ol>
-<table class="table table-info">
+
+<table class="table table-primary">
     <thead>
         <tr>
             <th scope="col">Title</th>
-            <th bgcolor="#ff0080">Category</th>
+            <th scope="col">Category</th>
             <th scope="col">User</th>
             <th scope="col">Date</th>
         </tr>
@@ -47,18 +30,21 @@
         {
             <tr class="table-dark">
                 <td><a href="Posts/ById/@post.Id"><font color="#ffffff">@post.Title</font></a></td>
-                <td><a href="Categories/CategoryByName/?categoryName=@post.Category.Name" class="btn btn-outline-danger">@post.Category.Name</a></td>
+                <td><a href="Categories/CategoryByName/?categoryName=@post.Category.Name" class="btn btn-outline-primary">@post.Category.Name</a></td>
                 <td><a href="/Users/UserPosts/?username=@post.UserUserName"><font color="#ffffff">@post.UserUserName</font></a></td>
                 <td>@post.FormattedDate</td>
             </tr>
         }
     </tbody>
 </table>
+
 <p></p>
-<ol class="breadcrumb">
+
+<ol class="breadcrumb bg-light">
     <li class="breadcrumb-item active">Most Liked Posts</li>
 </ol>
-<table class="table table-info">
+
+<table class="table table-primary">
     <thead>
         <tr>
             <th scope="col">Category</th>
@@ -79,4 +65,5 @@
         }
     </tbody>
 </table>
+
 <a class="btn btn-primary" asp-area="Forum" asp-controller="Posts" asp-action="Create">Create Post</a>
