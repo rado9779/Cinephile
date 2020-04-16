@@ -5,6 +5,7 @@
     using AutoMapper;
     using Cinephile.Data.Models;
     using Cinephile.Services.Mapping;
+    using Ganss.XSS;
 
     public class UserPostsViewModel : IMapFrom<Post>
     {
@@ -15,6 +16,8 @@
         public string Title { get; set; }
 
         public string Content { get; set; }
+
+        public string SanitizedContent => new HtmlSanitizer().Sanitize(this.Content);
 
         public string UserUserName { get; set; }
 

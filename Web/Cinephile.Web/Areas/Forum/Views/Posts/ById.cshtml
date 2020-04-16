@@ -21,7 +21,7 @@
             <div class="media flex-wrap w-100 align-items-center">
                 <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/2.jpg" class="d-block ui-w-40 rounded-circle" alt="">
                 <div class="media-body ml-3">
-                    @Model.UserUserName
+                    <a href="/Users/UserPosts/?username=@Model.UserUserName" style="text-decoration:none"><font color="#ffffff">@Model.UserUserName</font></a>
                 </div>
                 <div class="text-muted small ml-3">
                     @if (this.User.Identity.IsAuthenticated)
