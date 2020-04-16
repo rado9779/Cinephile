@@ -14,7 +14,7 @@
         <div class="card-block px-2">
             <br>
             <h3 class="card-title">@Model.Title</h3>
-            <p class="card-text">@Model.Content</p>
+            <p class="card-text"> @Html.Raw(Model.Content)</p>
         </div>
         <div class="w-50"></div>
         <div class="card-footer w-100 text-muted">
@@ -94,6 +94,15 @@
                 scrollTop: $("#AddCommentForm").offset().top
             }, 1000);
         }
+    </script>
+    <script src="/lib/tinymce/tinymce.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: "textarea",
+            plugins: [
+                "image paste table link code media"
+            ]
+        });
     </script>
 }
 
