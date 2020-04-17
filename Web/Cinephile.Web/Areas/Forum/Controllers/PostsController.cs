@@ -66,6 +66,8 @@
             return this.RedirectToAction(nameof(this.ById), new { id = postId });
         }
 
+
+        [Authorize]
         public IActionResult PostsByTitle(string title)
         {
             var viewModel = new AllPostsViewModel
