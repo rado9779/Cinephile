@@ -66,7 +66,6 @@
             return this.RedirectToAction(nameof(this.ById), new { id = postId });
         }
 
-
         [Authorize]
         public IActionResult PostsByTitle(string title)
         {
@@ -81,6 +80,32 @@
             }
 
             return this.View(viewModel);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var categories = this.categoriesService.GetAll<PostCategoriesViewModel>();
+            var viewModel = this.postsService.GetById<PostEditViewModel>(id);
+            viewModel.Categories = categories;
+
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(PostEditViewModel input)
+        {
+            if (input == null)
+            {
+                return this.NotFound();
+            }
+
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
+
+            await this.postsService.Edit(input);
+            return this.Redirect($"/Forum/Posts/ById/{input.Id}");
         }
     }
 }
