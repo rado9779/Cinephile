@@ -1,5 +1,6 @@
 ﻿namespace Cinephile.Services.Data
 {
+    using Cinephile.Web.ViewModels.Posts;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -16,5 +17,7 @@
         int GetCountByCategoryId(int categoryId);
 
         IEnumerable<T> GetByTitle<T>(string title);
+
+        Task Edit(PostEditViewModel input);
     }
 }

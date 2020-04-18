@@ -1,5 +1,6 @@
 ﻿namespace Cinephile.Services.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -7,6 +8,7 @@
     using Cinephile.Data.Common.Repositories;
     using Cinephile.Data.Models;
     using Cinephile.Services.Mapping;
+    using Cinephile.Web.ViewModels.Posts;
 
     public class PostsService : IPostsService
     {
@@ -81,6 +83,20 @@
                  .Where(x => x.Title.Contains(title));
 
             return query.To<T>().ToList();
+        }
+
+        public async Task Edit(PostEditViewModel input)
+        {
+            var post = this.postsRepository
+                .All()
+                .FirstOrDefault(x => x.Id == input.Id);
+
+            post.Title = input.Title;
+            post.Content = input.Content;
+            post.ModifiedOn = DateTime.UtcNow;
+
+            this.postsRepository.Update(post);
+            await this.postsRepository.SaveChangesAsync();
         }
     }
 }
