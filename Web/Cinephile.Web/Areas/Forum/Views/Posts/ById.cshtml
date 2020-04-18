@@ -24,7 +24,7 @@
                     <a href="/Users/UserPosts/?username=@Model.UserUserName" style="text-decoration:none"><font color="#ffffff">@Model.UserUserName</font></a>
                 </div>
                 <div class="text-muted small ml-3">
-                    @if (this.User.Identity.Name == Model.UserUserName)
+                    @if (this.User.Identity.Name == Model.UserUserName && this.User.Identity.IsAuthenticated)
                     {
                         <a class="btn btn-warning" a href="/Forum/Posts/Edit/@Model.Id" style="text-decoration:none">Edit</a>
                     }

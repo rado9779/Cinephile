@@ -93,6 +93,7 @@
 
             post.Title = input.Title;
             post.Content = input.Content;
+            post.CategoryId = input.CategoryId;
             post.ModifiedOn = DateTime.UtcNow;
 
             this.postsRepository.Update(post);
