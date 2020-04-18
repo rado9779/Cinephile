@@ -24,9 +24,15 @@
                     <a href="/Users/UserPosts/?username=@Model.UserUserName" style="text-decoration:none"><font color="#ffffff">@Model.UserUserName</font></a>
                 </div>
                 <div class="text-muted small ml-3">
+                    @if (this.User.Identity.Name == Model.UserUserName)
+                    {
+                        <a class="btn btn-warning" a href="/Forum/Posts/Edit/@Model.Id" style="text-decoration:none">Edit</a>
+                    }
+                </div>
+                <div class="text-muted small ml-3">
                     @if (this.User.Identity.IsAuthenticated)
                     {
-                        <div class="px-4 pt-3"> <button type="button" class="btn btn-primary float-right" onclick="showAddCommentForm(0)"><i class="fa fa-plus"></i>&nbsp; Comment</button> </div>
+                        <button type="button" class="btn btn-primary float-right" onclick="showAddCommentForm(0)"><i class="fa fa-plus"></i>&nbsp; Comment</button>
                         <div class="clearfix"></div>
                     }
                 </div>
