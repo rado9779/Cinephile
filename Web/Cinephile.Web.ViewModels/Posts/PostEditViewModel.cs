@@ -16,8 +16,12 @@
 
         public string SanitizedContent => new HtmlSanitizer().Sanitize(this.Content);
 
+        public string Category { get; set; }
+
         public int CategoryId { get; set; }
 
         public IEnumerable<PostCategoriesViewModel> Categories { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }
