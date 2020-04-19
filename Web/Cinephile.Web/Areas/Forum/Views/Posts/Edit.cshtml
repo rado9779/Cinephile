@@ -4,6 +4,10 @@
     var categories = Model.Categories.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
 }
 
+<br />
+
+<p class="text-success">Edit "@Model.Title"</p>
+
 <form method="post" asp-area="Forum" asp-controller="Posts" asp-action="Edit">
     <hr />
     <div>
@@ -11,12 +15,13 @@
         <input asp-for="Title" class="form-control bg-white" />
         <span asp-validation-for="Title" class="text-danger"></span>
     </div>
-
+    <br />
     <div>
         <label asp-for="Content"></label>
         <textarea asp-for="Content" class="form-control"></textarea>
         <span asp-validation-for="Content" class="text-danger"></span>
     </div>
+    <br />
     <div>
         <label asp-for="CategoryId"></label>
         <select asp-for="CategoryId" asp-items="categories" class="form-control bg-white"></select>

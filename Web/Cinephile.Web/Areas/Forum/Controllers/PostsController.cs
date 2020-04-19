@@ -72,6 +72,7 @@
             var viewModel = new AllPostsViewModel
             {
                 Posts = this.postsService.GetByTitle<PostViewModel>(title),
+                PostQuery = title,
             };
 
             if (viewModel == null)

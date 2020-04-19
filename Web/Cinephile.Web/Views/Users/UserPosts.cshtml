@@ -3,21 +3,26 @@
     ViewData["Title"] = "UserPosts";
 }
 
-<h1>@Model.Username Posts</h1>
+<hr />
+
+<div class="alert alert-dismissible alert-light">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>"@Model.Username" Posts</strong>
+</div>
 
 
 @foreach (var post in Model.UserPosts)
-    {
-        <div  class="alert alert-dark">
-            <h4 class="media-heading"><a asp-area="Forum" asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id">@post.Title</a></h4>
-            <p>@Html.Raw(post.SanitizedContent)</p>
-            <ul class="list-inline list-unstyled text-right">
-                <li class="list-inline-item">
-                    <i class="fas fa-user-edit"></i> @post.UserUserName
-                </li>
-                <li class="list-inline-item">
-                    <i class="fas fa-calendar-alt"></i> @post.CreatedOn
-                </li>
-            </ul>
-        </div>
-    }
+{
+    <div class="alert alert-dark">
+        <h4 class="media-heading"><a asp-area="Forum" asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id">@post.Title</a></h4>
+        <p>@Html.Raw(post.SanitizedContent)</p>
+        <ul class="list-inline list-unstyled text-right">
+            <li class="list-inline-item">
+                <i class="fas fa-user-edit"></i> @post.UserUserName
+            </li>
+            <li class="list-inline-item">
+                <i class="fas fa-calendar-alt"></i> @post.CreatedOn
+            </li>
+        </ul>
+    </div>
+}

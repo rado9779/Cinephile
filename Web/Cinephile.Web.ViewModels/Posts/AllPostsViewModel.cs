@@ -5,5 +5,7 @@
     public class AllPostsViewModel
     {
         public IEnumerable<PostViewModel> Posts { get; set; }
+
+        public string PostQuery { get; set; }
     }
 }

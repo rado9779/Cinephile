@@ -57,11 +57,9 @@
                         <a class="nav-link text-white" asp-area="Forum" asp-controller="Forum" asp-action="Rules">Rules</a>
                     </li>
                 </ul>
-                <form  class="form-inline" asp-controller="Posts" asp-action="PostsByTitle">
-                    <p>
-                        <input class="form-control" type="text" name="title"  placeholder="Search Post">
-                        <input class="btn btn-secondary"  type="submit" value="Search" />
-                    </p>
+                <form class="form-inline  my-2 my-lg-0" asp-controller="Posts" asp-action="PostsByTitle">
+                    <input class="form-control" type="text" name="title" placeholder="Search Post">
+                    <input class="btn btn-secondary" type="submit" value="Search" />
                 </form>
             </div>
         </nav>

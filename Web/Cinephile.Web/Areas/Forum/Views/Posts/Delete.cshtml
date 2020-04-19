@@ -4,6 +4,10 @@
     var categories = Model.Categories.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
 }
 
+<br />
+
+<p class="text-warning">Are you sure you want to delete "@Model.Title"?</p>
+
 <form method="post" asp-area="Forum" asp-controller="Posts" asp-action="Delete">
     <hr />
     <div>
