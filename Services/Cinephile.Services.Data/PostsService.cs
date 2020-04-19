@@ -13,10 +13,14 @@
     public class PostsService : IPostsService
     {
         private readonly IDeletableEntityRepository<Post> postsRepository;
+        private readonly IDeletableEntityRepository<Comment> commentsRepository;
 
-        public PostsService(IDeletableEntityRepository<Post> postsRepository)
+        public PostsService(
+            IDeletableEntityRepository<Post> postsRepository,
+            IDeletableEntityRepository<Comment> commentsRepository)
         {
             this.postsRepository = postsRepository;
+            this.commentsRepository = commentsRepository;
         }
 
         public async Task<int> Create(string title, string content, int categoryId, string userId)
@@ -96,6 +100,27 @@
             post.CategoryId = input.CategoryId;
             post.ModifiedOn = DateTime.UtcNow;
 
+            this.postsRepository.Update(post);
+            await this.postsRepository.SaveChangesAsync();
+        }
+
+        public async Task Delete(PostEditViewModel input)
+        {
+            var post = this.postsRepository
+                 .All()
+                 .FirstOrDefault(x => x.Id == input.Id);
+
+            foreach (var comment in post.Comments)
+            {
+                comment.IsDeleted = true;
+                comment.DeletedOn = DateTime.UtcNow;
+                this.commentsRepository.Update(comment);
+            }
+
+            await this.commentsRepository.SaveChangesAsync();
+
+            post.IsDeleted = true;
+            post.DeletedOn = DateTime.UtcNow;
             this.postsRepository.Update(post);
             await this.postsRepository.SaveChangesAsync();
         }

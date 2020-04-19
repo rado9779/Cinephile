@@ -1,8 +1,9 @@
 ﻿namespace Cinephile.Services.Data
 {
-    using Cinephile.Web.ViewModels.Posts;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+
+    using Cinephile.Web.ViewModels.Posts;
 
     public interface IPostsService
     {
@@ -19,5 +20,7 @@
         IEnumerable<T> GetByTitle<T>(string title);
 
         Task Edit(PostEditViewModel input);
+
+        Task Delete(PostEditViewModel input);
     }
 }
