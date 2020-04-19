@@ -107,5 +107,26 @@
             await this.postsService.Edit(input);
             return this.Redirect($"/Forum/Posts/ById/{input.Id}");
         }
+
+        public IActionResult Delete(int id)
+        {
+            var categories = this.categoriesService.GetAll<PostCategoriesViewModel>();
+            var viewModel = this.postsService.GetById<PostEditViewModel>(id);
+            viewModel.Categories = categories;
+
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(PostEditViewModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
+
+            await this.postsService.Delete(input);
+            return this.Redirect($"/Forum/Forum");
+        }
     }
 }
