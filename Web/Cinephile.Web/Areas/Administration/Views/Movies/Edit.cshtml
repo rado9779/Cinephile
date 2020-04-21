@@ -1,13 +1,13 @@
-﻿@model Cinephile.Web.ViewModels.Movies.MovieCreateModel
+﻿@model Cinephile.Web.ViewModels.Movies.MovieEditModel
 @{
-    ViewData["Title"] = "Create Movie";
+    ViewData["Title"] = "Edit Movie";
 }
 
 <hr />
 
-<h1>Add Movie</h1>
+<p class="text-success">Edit "@Model.Title"</p>
 
-<form method="post" asp-action="Create">
+<form method="post" asp-action="Edit">
     <hr />
     <div>
         <label asp-for="ImageUrl"></label>
@@ -65,7 +65,7 @@
         <span asp-validation-for="Country" class="text-danger"></span>
     </div>
     <hr />
-    <input type="submit" class="btn btn-primary" value="Submit" />
+    <input type="submit" class="btn btn-primary" value="Edit" />
     <a class="btn btn-success" asp-area="" asp-controller="Movies" asp-action="MoviesIndex">Back</a>
 </form>
 
