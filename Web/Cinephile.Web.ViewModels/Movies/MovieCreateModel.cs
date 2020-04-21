@@ -6,10 +6,8 @@
     using Cinephile.Data.Models;
     using Cinephile.Services.Mapping;
 
-    public class MovieViewModel : IMapFrom<Movie>
+    public class MovieCreateModel : IMapTo<Movie>
     {
-        public int Id { get; set; }
-
         public string ImageUrl { get; set; }
 
         public string Title { get; set; }
@@ -30,12 +28,10 @@
 
         public string Producer { get; set; }
 
+        public string Country { get; set; }
+
         public ICollection<ActorMovie> Actors { get; set; }
 
         public ICollection<MovieGenre> Genres { get; set; }
-
-        public DateTime ReleaseDate { get; set; }
-
-        public string Country { get; set; }
     }
 }
