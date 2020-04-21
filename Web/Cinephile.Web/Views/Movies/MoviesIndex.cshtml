@@ -3,7 +3,7 @@
     ViewData["Title"] = "MoviesIndex";
 }
 <hr />
-<h1>Movies</h1>
+<div class="text-center"><h1>Movies</h1></div>
 <hr />
 <div class="container-fluid">
     <div class="row content">
@@ -25,6 +25,11 @@
                 </div>
                 <button type="button" class="btn btn-info">Search</button>
             </form>
+            <br />
+            @if (this.User.IsInRole("Administrator"))
+            {
+                <a class="btn btn-primary" asp-area="Administration" asp-controller="Movies" asp-action="Create">Add Movie</a>
+            }
         </div>
 
         <div class="col-md-40 media-body">
@@ -36,7 +41,7 @@
                             <div class="card bg-info">
                                 <img class="card-img-top" src="@movie.ImageUrl" alt="Card image cap" height="200" width="200">
                                 <div class="card-body">
-                                    <p style="color:black;">@movie.Title</p>
+                                    <a class="btn btn-success" a href="/Administration/Movies/MovieView/?title=@movie.Title" style="text-decoration:none">@movie.Title</a>
                                 </div>
                             </div>
                             <p></p>
