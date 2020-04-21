@@ -9,7 +9,8 @@
     {
         public Movie()
         {
-            this.Actors = new HashSet<Actor>();
+            this.Actors = new HashSet<ActorMovie>();
+            this.Genres = new HashSet<MovieGenre>();
         }
 
         public string ImageUrl { get; set; }
@@ -32,11 +33,9 @@
 
         public string Producer { get; set; }
 
-        public ICollection<Actor> Actors { get; set; }
+        public ICollection<ActorMovie> Actors { get; set; }
 
-        public int GenreId { get; set; }
-
-        public virtual Genre Genre { get; set; }
+        public ICollection<MovieGenre> Genres { get; set; }
 
         public DateTime ReleaseDate { get; set; }
 

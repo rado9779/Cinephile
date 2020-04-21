@@ -8,14 +8,14 @@
     {
         public Genre()
         {
-            this.Movies = new HashSet<Movie>();
-            this.TVShows = new HashSet<TVShow>();
+            this.Movies = new HashSet<MovieGenre>();
+            this.TVShows = new HashSet<TVShowGenre>();
         }
 
         public string Name { get; set; }
 
-        public virtual ICollection<Movie> Movies { get; set; }
+        public virtual ICollection<MovieGenre> Movies { get; set; }
 
-        public virtual ICollection<TVShow> TVShows { get; set; }
+        public virtual ICollection<TVShowGenre> TVShows { get; set; }
     }
 }

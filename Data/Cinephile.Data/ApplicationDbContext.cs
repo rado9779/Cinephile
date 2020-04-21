@@ -28,9 +28,9 @@
 
         public DbSet<Category> Categories { get; set; }
 
-        public DbSet<Comment> Comments { get; set; }
-
         public DbSet<Post> Posts { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
 
         public DbSet<Actor> Actors { get; set; }
 
@@ -39,6 +39,14 @@
         public DbSet<TVShow> TVShows { get; set; }
 
         public DbSet<Genre> Genres { get; set; }
+
+        public DbSet<ActorMovie> ActorMovies { get; set; }
+
+        public DbSet<ActorTVShow> ActorTVShows { get; set; }
+
+        public DbSet<MovieGenre> MovieGenres { get; set; }
+
+        public DbSet<TVShowGenre> TVShowGenres { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
@@ -87,17 +95,17 @@
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
 
-            builder.Entity<Actor>()
-                 .HasMany(x => x.Movies);
+            builder.Entity<ActorMovie>()
+                .HasKey(x => new { x.ActorId, x.MovieId });
 
-            builder.Entity<Actor>()
-                 .HasMany(x => x.TVShows);
+            builder.Entity<ActorTVShow>()
+               .HasKey(x => new { x.ActorId, x.TVShowId });
 
-            builder.Entity<Movie>()
-                 .HasMany(x => x.Actors);
+            builder.Entity<MovieGenre>()
+               .HasKey(x => new { x.MovieId, x.GenreId });
 
-            builder.Entity<TVShow>()
-                 .HasMany(x => x.Actors);
+            builder.Entity<TVShowGenre>()
+              .HasKey(x => new { x.TVShowId, x.GenreId });
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

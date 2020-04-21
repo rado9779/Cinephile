@@ -9,7 +9,8 @@
     {
         public TVShow()
         {
-            this.Actors = new HashSet<Actor>();
+            this.Actors = new HashSet<ActorTVShow>();
+            this.Genres = new HashSet<TVShowGenre>();
         }
 
         public string ImageUrl { get; set; }
@@ -34,11 +35,9 @@
 
         public string Producer { get; set; }
 
-        public ICollection<Actor> Actors { get; set; }
+        public ICollection<ActorTVShow> Actors { get; set; }
 
-        public int GenreId { get; set; }
-
-        public virtual Genre Genre { get; set; }
+        public ICollection<TVShowGenre> Genres { get; set; }
 
         public DateTime ReleaseDate { get; set; }
 

@@ -9,8 +9,8 @@
     {
         public Actor()
         {
-            this.Movies = new HashSet<Movie>();
-            this.TVShows = new HashSet<TVShow>();
+            this.Movies = new HashSet<ActorMovie>();
+            this.TVShows = new HashSet<ActorTVShow>();
         }
 
         public string ImageUrl { get; set; }
@@ -33,8 +33,8 @@
 
         public string Birthplace { get; set; }
 
-        public ICollection<Movie> Movies { get; set; }
+        public ICollection<ActorMovie> Movies { get; set; }
 
-        public ICollection<TVShow> TVShows { get; set; }
+        public ICollection<ActorTVShow> TVShows { get; set; }
     }
 }

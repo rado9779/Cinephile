@@ -4,14 +4,16 @@ using Cinephile.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Cinephile.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200421083115_MapActorTVShow")]
+    partial class MapActorTVShow
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -356,6 +358,9 @@ namespace Cinephile.Data.Migrations
                     b.Property<string>("FacebookLink")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("GenreId")
+                        .HasColumnType("int");
+
                     b.Property<string>("HomePageLink")
                         .HasColumnType("nvarchar(max)");
 
@@ -388,24 +393,11 @@ namespace Cinephile.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GenreId");
+
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("Movies");
-                });
-
-            modelBuilder.Entity("Cinephile.Data.Models.MovieGenre", b =>
-                {
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GenreId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MovieId", "GenreId");
-
-                    b.HasIndex("GenreId");
-
-                    b.ToTable("MovieGenres");
                 });
 
             modelBuilder.Entity("Cinephile.Data.Models.Post", b =>
@@ -510,6 +502,9 @@ namespace Cinephile.Data.Migrations
                     b.Property<string>("FacebookLink")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("GenreId")
+                        .HasColumnType("int");
+
                     b.Property<string>("HomePageLink")
                         .HasColumnType("nvarchar(max)");
 
@@ -545,24 +540,11 @@ namespace Cinephile.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GenreId");
+
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("TVShows");
-                });
-
-            modelBuilder.Entity("Cinephile.Data.Models.TVShowGenre", b =>
-                {
-                    b.Property<int>("TVShowId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GenreId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TVShowId", "GenreId");
-
-                    b.HasIndex("GenreId");
-
-                    b.ToTable("TVShowGenres");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -712,17 +694,11 @@ namespace Cinephile.Data.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("Cinephile.Data.Models.MovieGenre", b =>
+            modelBuilder.Entity("Cinephile.Data.Models.Movie", b =>
                 {
                     b.HasOne("Cinephile.Data.Models.Genre", "Genre")
                         .WithMany("Movies")
                         .HasForeignKey("GenreId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Cinephile.Data.Models.Movie", "Movie")
-                        .WithMany("Genres")
-                        .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
@@ -740,17 +716,11 @@ namespace Cinephile.Data.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("Cinephile.Data.Models.TVShowGenre", b =>
+            modelBuilder.Entity("Cinephile.Data.Models.TVShow", b =>
                 {
                     b.HasOne("Cinephile.Data.Models.Genre", "Genre")
                         .WithMany("TVShows")
                         .HasForeignKey("GenreId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Cinephile.Data.Models.TVShow", "Movie")
-                        .WithMany("Genres")
-                        .HasForeignKey("TVShowId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
