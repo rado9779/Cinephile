@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Cinephile.Web.Areas.Administration.Controllers
+﻿namespace Cinephile.Web.Areas.Administration.Controllers
 {
-    public class TVShowsController
+    public class TVShowsController : AdministrationController
     {
+
     }
 }
