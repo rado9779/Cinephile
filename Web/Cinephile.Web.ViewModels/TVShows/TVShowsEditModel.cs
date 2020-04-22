@@ -6,7 +6,7 @@
     using Cinephile.Data.Models;
     using Cinephile.Services.Mapping;
 
-    public class TVShowViewModel : IMapFrom<TVShow>
+    public class TVShowsEditModel : IMapTo<TVShow>, IMapFrom<TVShow>
     {
         public int Id { get; set; }
 

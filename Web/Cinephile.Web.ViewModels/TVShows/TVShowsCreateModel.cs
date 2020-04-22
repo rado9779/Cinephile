@@ -2,11 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
 
     using Cinephile.Data.Models;
     using Cinephile.Services.Mapping;
 
-    public class TVShowViewModel : IMapFrom<TVShow>
+    public class TVShowsCreateModel : IMapTo<TVShow>
     {
         public int Id { get; set; }
 
