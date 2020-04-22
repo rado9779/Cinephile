@@ -1,11 +1,11 @@
 ﻿namespace Cinephile.Web.ViewModels.Actors
 {
-    using System;
-    using System.Collections.Generic;
     using Cinephile.Data.Models;
     using Cinephile.Services.Mapping;
+    using System;
+    using System.Collections.Generic;
 
-    public class ActorViewModel : IMapFrom<Actor>
+    public class ActorEditModel : IMapTo<Actor>, IMapFrom<Actor>
     {
         public int Id { get; set; }
 

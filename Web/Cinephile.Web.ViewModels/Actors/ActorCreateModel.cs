@@ -2,10 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
+
     using Cinephile.Data.Models;
     using Cinephile.Services.Mapping;
 
-    public class ActorViewModel : IMapFrom<Actor>
+    public class ActorCreateModel : IMapTo<Actor>
     {
         public int Id { get; set; }
 
