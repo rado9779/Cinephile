@@ -1,19 +1,19 @@
-﻿@model Cinephile.Web.ViewModels.Movies.MovieViewModel
+﻿@model Cinephile.Web.ViewModels.TVShows.TVShowViewModel
 @{
-    ViewData["Title"] = "MovieView";
+    ViewData["Title"] = "TVShowView";
 }
-
 
 <body>
     <div class="container">
         <div class="row align-items-center my-5">
             <div class="col-lg-5">
-                <img class="card-img-top" src="@Model.ImageUrl" alt="Card image cap" height="200" width="200">
+                <img class="img-fluid rounded mb-4 mb-lg-0" src="@Model.ImageUrl" alt="">
             </div>
             <div class="col-lg-7">
                 <h1 class="font-weight-light">@Model.Title (@Model.Year)</h1>
                 <h4>Overview</h4>
                 <p>@Model.Description</p>
+                <h4>Seasons - @Model.Seasons</h4>
             </div>
         </div>
         <div class="card text-white bg-active my-5 py-4 text-center">
@@ -61,7 +61,7 @@
                         </ul>
                         <h3 class="card-title">Release</h3>
                         <ul>
-                            <li>February 8, 2015</li>
+                            <li>@Model.ReleaseDate</li>
                         </ul>
                         <h3 class="card-title">Country</h3>
                         <ul>
@@ -75,8 +75,9 @@
     <footer class="py-5 bg-dark">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-            <a class="btn btn-success " a href="/Administration/Movies/Edit/@Model.Id" style="text-decoration:none;">Edit</a>
-            <a class="btn btn-warning" a href="/Administration/Movies/Delete/@Model.Id" style="text-decoration:none">Delete</a>
+            <a class="btn btn-success " a href="/Administration/TVShows/Edit/@Model.Id" style="text-decoration:none;">Edit</a>
+            <a class="btn btn-warning" a href="/Administration/TVShows/Delete/@Model.Id" style="text-decoration:none">Delete</a>
         </div>
     </footer>
 </body>
+
