@@ -26,18 +26,23 @@
                 </div>
                 <button type="button" class="btn btn-info">Search</button>
             </form>
+            <br />
+            @if (this.User.IsInRole("Administrator"))
+            {
+                <a class="btn btn-primary" asp-area="Administration" asp-controller="TVShows" asp-action="Create">Add TV Show</a>
+            }
         </div>
 
         <div class="col-md-40 media-body">
             <div class="row">
-                @for (int i = 0; i < 4; i++)
+                @foreach (var tvshow in Model.TVShows)
                 {
                     <div class="col-md-4 media">
                         <div class="media-body">
                             <div class="card bg-info">
-                                <img class="card-img-top" src="https://image.tmdb.org/t/p/w220_and_h330_face/7buCWBTpiPrCF5Lt023dSC60rgS.jpg" alt="Card image cap" height="200" width="200">
+                                <img class="card-img-top" src="@tvshow.ImageUrl" alt="Card image cap" height="200" width="200">
                                 <div class="card-body">
-                                    <p style="color:black;">Friends</p>
+                                    <a class="btn btn-success" a href="/Administration/TVShows/TVShowView/?title=@tvshow.Title" style="text-decoration:none">@tvshow.Title</a>
                                 </div>
                             </div>
                             <p></p>
