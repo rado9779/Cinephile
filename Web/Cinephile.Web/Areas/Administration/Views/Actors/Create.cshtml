@@ -1,0 +1,68 @@
+﻿@model Cinephile.Web.ViewModels.Actors.ActorCreateModel
+@{
+    ViewData["Title"] = "Create Actor";
+}
+
+<hr />
+
+<h1>Add Actor</h1>
+
+<form method="post" asp-action="Create">
+    <hr />
+    <div>
+        <label asp-for="ImageUrl"></label>
+        <input asp-for="ImageUrl" class="form-control bg-white" />
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" class="form-control bg-white" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control bg-white" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Biography"></label>
+        <textarea asp-for="Biography" class="form-control" style="background-color:white"></textarea>
+        <span asp-validation-for="Biography" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="HomePageLink"></label>
+        <input asp-for="HomePageLink" class="form-control bg-white" />
+        <span asp-validation-for="HomePageLink" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="IMDBLink"></label>
+        <input asp-for="IMDBLink" class="form-control bg-white" />
+        <span asp-validation-for="IMDBLink" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="FacebookLink"></label>
+        <input asp-for="FacebookLink" class="form-control bg-white" />
+        <span asp-validation-for="FacebookLink" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Gender"></label>
+        <input asp-for="Gender" class="form-control bg-white" />
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Birthdate"></label>
+        <input asp-for="Birthdate" class="form-control bg-white" />
+        <span asp-validation-for="Birthdate" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Birthplace"></label>
+        <input asp-for="Birthplace" class="form-control bg-white" />
+        <span asp-validation-for="Birthplace" class="text-danger"></span>
+    </div>
+    <hr />
+    <input type="submit" class="btn btn-primary" value="Submit" />
+    <a class="btn btn-success" asp-area="" asp-controller="Actors" asp-action="ActorsIndex">Back</a>
+</form>
+
+
+
