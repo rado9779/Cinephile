@@ -3,8 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
+
     using Cinephile.Data.Common.Repositories;
     using Cinephile.Data.Models;
     using Cinephile.Services.Mapping;
@@ -19,27 +19,13 @@
             this.actorsRepository = actorsRepository;
         }
 
-
-        public IEnumerable<T> GetAll<T>(int? count = null)
-        {
-            IQueryable<Actor> query = this.actorsRepository
-                 .All()
-                 .OrderBy(x => x.FirstName);
-
-            if (count.HasValue)
-            {
-                query = query.Take(count.Value);
-            }
-
-            return query.To<T>().ToList();
-        }
-
         public T GetById<T>(int id)
         {
             var actor = this.actorsRepository
                 .All()
                 .Where(x => x.Id == id)
-               .To<T>().FirstOrDefault();
+                .To<T>()
+                .FirstOrDefault();
 
             return actor;
         }
@@ -53,6 +39,20 @@
                  .FirstOrDefault();
 
             return actor;
+        }
+
+        public IEnumerable<T> GetAll<T>(int? count = null)
+        {
+            IQueryable<Actor> query = this.actorsRepository
+                 .All()
+                 .OrderBy(x => x.FirstName);
+
+            if (count.HasValue)
+            {
+                query = query.Take(count.Value);
+            }
+
+            return query.To<T>().ToList();
         }
 
         public async Task Create(ActorCreateModel input)

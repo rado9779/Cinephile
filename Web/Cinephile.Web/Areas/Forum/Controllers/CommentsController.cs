@@ -22,6 +22,7 @@
             this.userManager = userManager;
         }
 
+        [HttpPost]
         public async Task<IActionResult> Create(CommentInputViewModel input)
         {
             var userId = this.userManager.GetUserId(this.User);

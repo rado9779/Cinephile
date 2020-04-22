@@ -1,11 +1,12 @@
 ﻿namespace Cinephile.Web.Areas.Administration.Controllers
 {
+    using System.Threading.Tasks;
+
     using Cinephile.Data.Models;
     using Cinephile.Services.Data;
     using Cinephile.Services.Mapping;
     using Cinephile.Web.ViewModels.Actors;
     using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
 
     public class ActorsController : AdministrationController
     {

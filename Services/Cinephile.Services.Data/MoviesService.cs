@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using Cinephile.Data.Common.Repositories;
     using Cinephile.Data.Models;
     using Cinephile.Services.Mapping;
@@ -18,10 +19,33 @@
             this.moviesRepository = moviesRepository;
         }
 
+        public T GetById<T>(int id)
+        {
+            var movie = this.moviesRepository
+               .All()
+               .Where(x => x.Id == id)
+               .To<T>()
+               .FirstOrDefault();
+
+            return movie;
+        }
+
+        public T GetByTitle<T>(string title)
+        {
+            var movie = this.moviesRepository
+               .All()
+               .Where(x => x.Title == title)
+               .To<T>()
+               .FirstOrDefault();
+
+            return movie;
+        }
+
         public IEnumerable<T> GetAll<T>(int? count = null)
         {
-            IQueryable<Movie> query =
-                 this.moviesRepository.All().OrderBy(x => x.Title);
+            IQueryable<Movie> query = this.moviesRepository
+                 .All()
+                 .OrderBy(x => x.Title);
 
             if (count.HasValue)
             {
@@ -50,17 +74,6 @@
 
             await this.moviesRepository.AddAsync(movie);
             await this.moviesRepository.SaveChangesAsync();
-        }
-
-        public T GetByTitle<T>(string title)
-        {
-            var movie = this.moviesRepository
-               .All()
-               .Where(x => x.Title == title)
-               .To<T>()
-               .FirstOrDefault();
-
-            return movie;
         }
 
         public async Task Edit(MovieEditModel input)
@@ -93,15 +106,9 @@
 
             movie.IsDeleted = true;
             movie.DeletedOn = DateTime.UtcNow;
+
             this.moviesRepository.Update(movie);
             await this.moviesRepository.SaveChangesAsync();
-        }
-
-        public T GetById<T>(int id)
-        {
-            var movie = this.moviesRepository.All().Where(x => x.Id == id)
-               .To<T>().FirstOrDefault();
-            return movie;
         }
     }
 }

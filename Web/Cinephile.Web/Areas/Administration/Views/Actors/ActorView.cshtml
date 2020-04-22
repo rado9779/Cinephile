@@ -3,8 +3,6 @@
     ViewData["Title"] = "ActorView";
 }
 
-<h1>ActorView</h1>
-
 <body>
     <div class="container">
         <div class="row align-items-center my-5">
@@ -74,11 +72,18 @@
             </div>
         </div>
     </div>
+
+    <table class="table table-active d-flex justify-content-center">
+        <tr>
+            <td> <a class="btn btn-success " a href="/Administration/Actors/Edit/@Model.Id" style="text-decoration:none;">Edit</a></td>
+            <td><a class="btn btn-warning" a href="/Administration/Actors/Delete/@Model.Id" style="text-decoration:none">Delete</a></td>
+
+        </tr>
+    </table>
+    <br />
     <footer class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-            <a class="btn btn-success " a href="/Administration/Actors/Edit/@Model.Id" style="text-decoration:none;">Edit</a>
-            <a class="btn btn-warning" a href="/Administration/Actors/Delete/@Model.Id" style="text-decoration:none">Delete</a>
+            <p class="m-0 text-center text-white">Copyright &copy; Cinephile @DateTime.UtcNow.Year</p>
         </div>
     </footer>
 </body>

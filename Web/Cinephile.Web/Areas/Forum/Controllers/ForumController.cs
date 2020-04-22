@@ -1,7 +1,6 @@
 ﻿namespace Cinephile.Web.Controllers
 {
     using Cinephile.Services.Data;
-    using Cinephile.Web.ViewModels.Forum;
     using Cinephile.Web.ViewModels.Posts;
     using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +14,7 @@
             this.postsService = postsService;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             var viewModel = new AllPostsViewModel
@@ -30,6 +30,7 @@
             return this.View(viewModel);
         }
 
+        [HttpGet]
         public IActionResult Rules()
         {
             return this.View();

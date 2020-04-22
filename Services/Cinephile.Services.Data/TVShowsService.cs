@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using Cinephile.Data.Common.Repositories;
     using Cinephile.Data.Models;
     using Cinephile.Services.Mapping;
@@ -16,20 +17,6 @@
         public TVShowsService(IDeletableEntityRepository<TVShow> tvshowRepository)
         {
             this.tvshowRepository = tvshowRepository;
-        }
-
-        public IEnumerable<T> GetAll<T>(int? count = null)
-        {
-            IQueryable<TVShow> query = this.tvshowRepository
-                 .All()
-                 .OrderBy(x => x.Title);
-
-            if (count.HasValue)
-            {
-                query = query.Take(count.Value);
-            }
-
-            return query.To<T>().ToList();
         }
 
         public T GetById<T>(int id)
@@ -52,6 +39,20 @@
                .FirstOrDefault();
 
             return tvshow;
+        }
+
+        public IEnumerable<T> GetAll<T>(int? count = null)
+        {
+            IQueryable<TVShow> query = this.tvshowRepository
+                 .All()
+                 .OrderBy(x => x.Title);
+
+            if (count.HasValue)
+            {
+                query = query.Take(count.Value);
+            }
+
+            return query.To<T>().ToList();
         }
 
         public async Task Create(TVShowsCreateModel input)

@@ -1,10 +1,11 @@
 ﻿namespace Cinephile.Services.Data
 {
-    using Cinephile.Web.ViewModels.TVShows;
     using System;
     using System.Collections.Generic;
     using System.Text;
     using System.Threading.Tasks;
+
+    using Cinephile.Web.ViewModels.TVShows;
 
     public interface ITVShowsService
     {

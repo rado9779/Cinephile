@@ -20,6 +20,7 @@
             this.postsService = postsService;
         }
 
+        [HttpGet]
         public IActionResult AllCategories()
         {
             var viewModel = new AllCategoriesViewModel
@@ -43,6 +44,7 @@
 
             var count = this.postsService.GetCountByCategoryId(viewModel.Id);
             viewModel.PagesCount = (int)Math.Ceiling((double)count / ItemsPerPage);
+
             if (viewModel.PagesCount == 0)
             {
                 viewModel.PagesCount = 1;

@@ -20,6 +20,16 @@
             this.usersRepository = usersRepository;
         }
 
+        public T GetUserByName<T>(string username)
+        {
+            var user = this.usersRepository
+                .All()
+                .Where(x => x.UserName == username)
+                .To<T>().FirstOrDefault();
+
+            return user;
+        }
+
         public IEnumerable<T> GetAllUserPosts<T>(string username)
         {
             IQueryable<Post> query = this.postsRepository
@@ -28,15 +38,6 @@
                  .Where(x => x.User.UserName == username);
 
             return query.To<T>().ToList();
-        }
-
-        public T GetUserByName<T>(string username)
-        {
-            var user = this.usersRepository.All()
-                  .Where(x => x.UserName == username)
-                  .To<T>().FirstOrDefault();
-
-            return user;
         }
     }
 }

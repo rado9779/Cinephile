@@ -28,9 +28,11 @@
             this.userManager = userManager;
         }
 
+        [HttpGet]
         public IActionResult ById(int id)
         {
             var postViewModel = this.postsService.GetById<PostViewModel>(id);
+
             if (postViewModel == null)
             {
                 return this.NotFound();
@@ -39,10 +41,12 @@
             return this.View(postViewModel);
         }
 
+        [HttpGet]
         [Authorize]
         public IActionResult Create()
         {
             var categories = this.categoriesService.GetAll<PostCategoriesViewModel>();
+
             var viewModel = new PostInputModel
             {
                 Categories = categories,
@@ -55,6 +59,7 @@
         public async Task<IActionResult> Create(PostInputModel input)
         {
             var post = AutoMapperConfig.MapperInstance.Map<Post>(input);
+
             if (!this.ModelState.IsValid)
             {
                 return this.View(input);
@@ -65,6 +70,7 @@
             return this.RedirectToAction(nameof(this.ById), new { id = postId });
         }
 
+        [HttpGet]
         [Authorize]
         public IActionResult PostsByTitle(string title)
         {
@@ -82,6 +88,7 @@
             return this.View(viewModel);
         }
 
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             var categories = this.categoriesService.GetAll<PostCategoriesViewModel>();
@@ -94,11 +101,6 @@
         [HttpPost]
         public async Task<IActionResult> Edit(PostEditViewModel input)
         {
-            if (input == null)
-            {
-                return this.NotFound();
-            }
-
             if (!this.ModelState.IsValid)
             {
                 return this.View(input);
@@ -108,6 +110,7 @@
             return this.Redirect($"/Forum/Posts/ById/{input.Id}");
         }
 
+        [HttpGet]
         public IActionResult Delete(int id)
         {
             var categories = this.categoriesService.GetAll<PostCategoriesViewModel>();

@@ -56,11 +56,6 @@
         [HttpPost]
         public async Task<IActionResult> Edit(TVShowsEditModel input)
         {
-            if (input == null)
-            {
-                return this.NotFound();
-            }
-
             if (!this.ModelState.IsValid)
             {
                 return this.View(input);
