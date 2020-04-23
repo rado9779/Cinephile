@@ -26,7 +26,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var post in Model.Posts.OrderByDescending(x => x.CreatedOn).Take(5))
+        @foreach (var post in Model.Posts.OrderByDescending(x => x.CreatedOn).Take(10))
         {
             <tr class="table-dark">
                 <td><a href="Posts/ById/@post.Id"><font color="#ffffff">@post.Title</font></a></td>
@@ -38,32 +38,3 @@
     </tbody>
 </table>
 
-<p></p>
-
-<ol class="breadcrumb bg-light">
-    <li class="breadcrumb-item active">Most Liked Posts</li>
-</ol>
-
-<table class="table table-primary">
-    <thead>
-        <tr>
-            <th scope="col">Category</th>
-            <th scope="col">Title</th>
-            <th scope="col">User</th>
-            <th scope="col">Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var post in Model.Posts.OrderBy(x => x.CreatedOn).Take(5))
-        {
-            <tr class="table-dark">
-                <td>@post.Category.Name</td>
-                <th scope="row">@post.Title</th>
-                <td>@post.UserUserName</td>
-                <td>@post.FormattedDate</td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<a class="btn btn-primary" asp-area="Forum" asp-controller="Posts" asp-action="Create">Create Post</a>

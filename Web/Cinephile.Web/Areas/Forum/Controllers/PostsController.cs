@@ -42,7 +42,6 @@
             return this.View(postViewModel);
         }
 
-        [HttpGet]
         [Authorize]
         public IActionResult PostsByTitle(string title)
         {
