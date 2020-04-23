@@ -41,4 +41,11 @@
     <ProjectReference Include="..\Cinephile.Web.Infrastructure\Cinephile.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\Cinephile.Web.ViewModels\Cinephile.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Movies\MovieView.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

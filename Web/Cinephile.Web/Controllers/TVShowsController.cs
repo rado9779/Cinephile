@@ -13,6 +13,7 @@
             this.tvshowsService = tvshowsService;
         }
 
+        [HttpGet]
         public IActionResult TVShowsIndex()
         {
             var viewModel = new AllTVShowsViewModel()
@@ -23,9 +24,13 @@
             return this.View(viewModel);
         }
 
-        public IActionResult TVShowView()
+        [HttpGet]
+        public IActionResult TVShowView(string title)
         {
-            return this.View();
+            var viewModel = this.tvshowsService
+                .GetByTitle<TVShowViewModel>(title);
+
+            return this.View(viewModel);
         }
     }
 }

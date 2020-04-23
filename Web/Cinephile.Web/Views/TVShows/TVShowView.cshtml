@@ -1,70 +1,44 @@
-﻿
+﻿@model Cinephile.Web.ViewModels.TVShows.TVShowViewModel
 @{
     ViewData["Title"] = "TVShowView";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Small Business - Start Bootstrap Template</title>
-
-</head>
-
 <body>
-    <!-- Page Content -->
     <div class="container">
-
-        <!-- Heading Row -->
         <div class="row align-items-center my-5">
             <div class="col-lg-5">
-                <img class="img-fluid rounded mb-4 mb-lg-0" src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8a/Better_Call_Saul_logo.svg/375px-Better_Call_Saul_logo.svg.png" alt="">
+                <img class="img-fluid rounded mb-4 mb-lg-0" src="@Model.ImageUrl" alt="">
             </div>
-            <!-- /.col-lg-8 -->
             <div class="col-lg-7">
-                <h1 class="font-weight-light">Better Call Saul (2015)</h1>
+                <h1 class="font-weight-light">@Model.Title (@Model.Year)</h1>
                 <h4>Overview</h4>
-                <p>Six years before Saul Goodman meets Walter White. We meet him when the man who will become Saul Goodman is known as Jimmy McGill, a small-time lawyer searching for his destiny, and, more immediately, hustling to make ends meet. Working alongside, and, often, against Jimmy, is “fixer” Mike Ehrmantraut. The series tracks Jimmy’s transformation into Saul Goodman, the man who puts “criminal” in “criminal lawyer".</p>
-                <h4>Seasons - 5</h4>
+                <p>@Model.Description</p>
+                <h4>Seasons - @Model.Seasons</h4>
             </div>
-            <!-- /.col-md-4 -->
         </div>
-        <!-- /.row -->
-        <!-- Call to Action Well -->
         <div class="card text-white bg-active my-5 py-4 text-center">
             <div class="card-body">
-                <button type="button" class="btn btn-secondary">HomePage</button>
-                <button type="button" class="btn btn-primary">IMDb</button>
-                <button type="button" class="btn btn-warning">YouTube</button>
-                <button type="button" class="btn btn-info">Facebook</button>
+                <button onclick="location.href='@Model.HomePageLink'" class="btn btn-secondary">HomePage</button>
+                <button onclick="location.href='@Model.IMDBLink'" class="btn btn-primary">IMDb</button>
+                <button onclick="location.href='@Model.TrailerLink'" class="btn btn-warning">YouTube</button>
+                <button onclick="location.href='@Model.FacebookLink'" class="btn btn-info">Facebook</button>
             </div>
         </div>
-
-        <!-- Content Row -->
         <div class="row">
             <div class="col-md-4 mb-5">
                 <div class="card h-100">
                     <div class="card-body">
                         <h2 class="card-title">Creators</h2>
                         <ul>
-                            <li>Peter Gould</li>
-                            <li>Vince Gilligan</li>
+                            <li>@Model.Creater</li>
                         </ul>
                         <h2 class="card-title">Producers</h2>
                         <ul>
-                            <li>Peter Gould</li>
-                            <li>Vince Gilligan</li>
+                            <li>@Model.Producer</li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <!-- /.col-md-4 -->
             <div class="col-md-4 mb-5">
                 <div class="card h-100">
                     <div class="card-body">
@@ -77,7 +51,6 @@
                     </div>
                 </div>
             </div>
-            <!-- /.col-md-4 -->
             <div class="col-md-4 mb-5">
                 <div class="card h-100">
                     <div class="card-body">
@@ -88,29 +61,29 @@
                         </ul>
                         <h3 class="card-title">Release</h3>
                         <ul>
-                            <li>February 8, 2015</li>
+                            <li>@Model.ReleaseDate</li>
                         </ul>
                         <h3 class="card-title">Country</h3>
                         <ul>
-                            <li>United States</li>
+                            <li>@Model.Country</li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <!-- /.col-md-4 -->
-
         </div>
-        <!-- /.row -->
-
     </div>
-    <!-- /.container -->
-    <!-- Footer -->
+    <table class="table table-active d-flex justify-content-center">
+        <tr>
+            <td><a class="btn btn-success " a href="/Administration/TVShows/Edit/@Model.Id" style="text-decoration:none;">Edit</a></td>
+            <td><a class="btn btn-warning" a href="/Administration/TVShows/Delete/@Model.Id" style="text-decoration:none">Delete</a></td>
+
+        </tr>
+    </table>
+    <br />
     <footer class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+            <p class="m-0 text-center text-white">Copyright &copy; Cinephile @DateTime.UtcNow.Year</p>
         </div>
-        <!-- /.container -->
     </footer>
 </body>
-</html>
 

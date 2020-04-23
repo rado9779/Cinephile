@@ -1,77 +1,48 @@
-﻿
+﻿@model Cinephile.Web.ViewModels.Actors.ActorViewModel
 @{
     ViewData["Title"] = "ActorView";
 }
 
-<h1>ActorView</h1>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Small Business - Start Bootstrap Template</title>
-
-</head>
-
 <body>
-    <!-- Page Content -->
     <div class="container">
-
-        <!-- Heading Row -->
         <div class="row align-items-center my-5">
             <div class="col-lg-5">
-                <img class="img-fluid rounded mb-4 mb-lg-0" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Quentin_Tarantino_by_Gage_Skidmore.jpg/330px-Quentin_Tarantino_by_Gage_Skidmore.jpg" alt="">
+                <img class="img-fluid rounded mb-4 mb-lg-0" src="@Model.ImageUrl" alt="">
             </div>
-            <!-- /.col-lg-8 -->
             <div class="col-lg-7">
-                <h1 class="font-weight-light">Quentin Tarantino</h1>
+                <h1 class="font-weight-light">@Model.FirstName @Model.LastName</h1>
                 <h4>Biography</h4>
                 <p>
-                    Quentin Jerome Tarantino (born March 27, 1963) is an American film director, screenwriter, producer, cinematographer and actor. In the early 1990s he was an independent filmmaker whose films used nonlinear storylines and aestheticization of violence. His films have earned him a variety of Academy Award, Golden Globe, BAFTA and Palme d'Or Awards and he has been nominated for Emmy and Grammy Awards. In 2007, Total Film named him the 12th-greatest director of all time.
-
-                    Tarantino was born in Knoxville, Tennessee, the son of Connie McHugh Tarantino Zastoupil, a health care executive and nurse born in Knoxville, and Tony Tarantino, an actor and amateur musician born in Queens, New York.
+                    @Model.Biography
                 </p>
             </div>
-            <!-- /.col-md-4 -->
         </div>
-        <!-- /.row -->
-        <!-- Call to Action Well -->
         <div class="card text-white bg-active my-5 py-4 text-center">
             <div class="card-body">
-                <button type="button" class="btn btn-secondary">HomePage</button>
-                <button type="button" class="btn btn-primary">IMDb</button>
-                <button type="button" class="btn btn-warning">YouTube</button>
-                <button type="button" class="btn btn-info">Facebook</button>
+                <button onclick="location.href='@Model.HomePageLink'" class="btn btn-secondary">HomePage</button>
+                <button onclick="location.href='@Model.IMDBLink'" class="btn btn-primary">IMDb</button>
+                <button onclick="location.href='@Model.FacebookLink'" class="btn btn-info">Facebook</button>
             </div>
         </div>
-
-        <!-- Content Row -->
         <div class="row">
             <div class="col-md-4 mb-5">
                 <div class="card h-100">
                     <div class="card-body">
                         <h3 class="card-title">Gender</h3>
                         <ul>
-                            <li>Male</li>
+                            <li>@Model.Gender</li>
                         </ul>
                         <h3 class="card-title">Birthday</h3>
                         <ul>
-                            <li>1963-03-27 (57 years old)</li>
+                            <li>@Model.Birthdate</li>
                         </ul>
                         <h3 class="card-title">Place of Birth</h3>
                         <ul>
-                            <li>Knoxville, Tennessee, USA</li>
+                            <li>@Model.Birthplace</li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <!-- /.col-md-4 -->
             <div class="col-md-4 mb-5">
                 <div class="card h-100">
                     <div class="card-body">
@@ -86,7 +57,6 @@
                     </div>
                 </div>
             </div>
-            <!-- /.col-md-4 -->
             <div class="col-md-4 mb-5">
                 <div class="card h-100">
                     <div class="card-body">
@@ -100,20 +70,12 @@
                     </div>
                 </div>
             </div>
-            <!-- /.col-md-4 -->
-
         </div>
-        <!-- /.row -->
-
     </div>
-    <!-- /.container -->
-    <!-- Footer -->
     <footer class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+            <p class="m-0 text-center text-white">Copyright &copy; Cinephile @DateTime.UtcNow.Year</p>
         </div>
-        <!-- /.container -->
     </footer>
 </body>
-</html>
 

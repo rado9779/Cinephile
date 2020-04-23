@@ -13,6 +13,7 @@
             this.moviesService = moviesService;
         }
 
+        [HttpGet]
         public IActionResult MoviesIndex()
         {
             var viewModel = new AllMoviesViewModel()
@@ -22,9 +23,11 @@
             return this.View(viewModel);
         }
 
-        public IActionResult MovieView()
+        [HttpGet]
+        public IActionResult MovieView(string title)
         {
-            return this.View();
+            var viewModel = this.moviesService.GetByTitle<MovieViewModel>(title);
+            return this.View(viewModel);
         }
     }
 }

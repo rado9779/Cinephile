@@ -8,6 +8,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
+    [Area("Administration")]
     public class CommentsController : AdministrationController
     {
         private readonly ICommentsService commentsService;

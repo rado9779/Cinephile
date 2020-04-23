@@ -28,7 +28,16 @@
                 <div class="card bg-info">
                     <img class="card-img-top" src="@actor.ImageUrl" alt="Card image cap" height="200" width="200">
                     <div class="card-body">
-                        <a class="btn btn-success" a href="/Administration/Actors/ActorView/?name=@actor.FirstName" style="text-decoration:none">@actor.FirstName @actor.LastName</a>
+                        @{
+                            if (this.User.IsInRole("Administrator"))
+                            {
+                                <a class="btn btn-success" a href="/Administration/Actors/ActorView/?name=@actor.FirstName" style="text-decoration:none">@actor.FirstName @actor.LastName</a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-success" a href="/Actors/ActorView/?name=@actor.FirstName" style="text-decoration:none">@actor.FirstName @actor.LastName</a>
+                            }
+                        }
                     </div>
                 </div>
                 <p></p>

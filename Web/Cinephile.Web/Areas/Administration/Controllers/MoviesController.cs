@@ -8,6 +8,7 @@
     using Cinephile.Web.ViewModels.Movies;
     using Microsoft.AspNetCore.Mvc;
 
+    [Area("Administration")]
     public class MoviesController : AdministrationController
     {
         private readonly IMoviesService moviesService;

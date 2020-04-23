@@ -13,6 +13,7 @@
             this.actorsService = actorsService;
         }
 
+        [HttpGet]
         public IActionResult ActorsIndex()
         {
             var viewModel = new AllActorsViewModel()
@@ -22,9 +23,13 @@
             return this.View(viewModel);
         }
 
-        public IActionResult ActorView()
+        [HttpGet]
+        public IActionResult ActorView(string name)
         {
-            return this.View();
+            var viewModel = this.actorsService
+                .GetByTitle<ActorViewModel>(name);
+
+            return this.View(viewModel);
         }
     }
 }

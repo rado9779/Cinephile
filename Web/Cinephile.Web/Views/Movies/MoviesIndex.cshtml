@@ -41,7 +41,16 @@
                             <div class="card bg-info">
                                 <img class="card-img-top" src="@movie.ImageUrl" alt="Card image cap" height="200" width="200">
                                 <div class="card-body">
-                                    <a class="btn btn-success" a href="/Administration/Movies/MovieView/?title=@movie.Title" style="text-decoration:none">@movie.Title</a>
+                                    @{
+                                        if (this.User.IsInRole("Administrator"))
+                                        {
+                                            <a class="btn btn-success" a href="/Administration/Movies/MovieView/?title=@movie.Title" style="text-decoration:none">@movie.Title</a>
+                                        }
+                                        else
+                                        {
+                                            <a class="btn btn-success" a href="/Movies/MovieView/?title=@movie.Title" style="text-decoration:none">@movie.Title</a>
+                                        }
+                                    }
                                 </div>
                             </div>
                             <p></p>

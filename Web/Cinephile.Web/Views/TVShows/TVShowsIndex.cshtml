@@ -42,7 +42,16 @@
                             <div class="card bg-info">
                                 <img class="card-img-top" src="@tvshow.ImageUrl" alt="Card image cap" height="200" width="200">
                                 <div class="card-body">
-                                    <a class="btn btn-success" a href="/Administration/TVShows/TVShowView/?title=@tvshow.Title" style="text-decoration:none">@tvshow.Title</a>
+                                    @{
+                                        if (this.User.IsInRole("Administrator"))
+                                        {
+                                            <a class="btn btn-success" a href="/Administration/TVShows/TVShowView/?title=@tvshow.Title" style="text-decoration:none">@tvshow.Title</a>
+                                        }
+                                        else
+                                        {
+                                            <a class="btn btn-success" a href="/TVShows/TVShowView/?title=@tvshow.Title" style="text-decoration:none">@tvshow.Title</a>
+                                        }
+                                    }
                                 </div>
                             </div>
                             <p></p>

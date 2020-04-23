@@ -8,6 +8,7 @@
     using Cinephile.Web.ViewModels.TVShows;
     using Microsoft.AspNetCore.Mvc;
 
+    [Area("Administration")]
     public class TVShowsController : AdministrationController
     {
         private readonly ITVShowsService tvshowsService;

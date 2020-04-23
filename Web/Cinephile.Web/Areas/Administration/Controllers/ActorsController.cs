@@ -8,6 +8,7 @@
     using Cinephile.Web.ViewModels.Actors;
     using Microsoft.AspNetCore.Mvc;
 
+    [Area("Administration")]
     public class ActorsController : AdministrationController
     {
         private readonly IActorsService actorsService;
