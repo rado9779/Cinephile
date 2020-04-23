@@ -4,16 +4,17 @@
 }
 
 <hr />
-<h1>TVShows</h1>
-<hr />
 <div class="container-fluid">
     <div class="row content">
         <div class="col-3 sidenav">
             <form>
+                <div class="text-center"><h1>TVShows</h1></div>
+                <hr />
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Movie Title</label>
                     <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Title">
                 </div>
+                <button type="button" style="width: 245px" class="btn btn-info">Search</button>
+                <br />
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Genre</label>
                     <select class="form-control" id="exampleFormControlSelect1">
@@ -24,12 +25,11 @@
                         <option>5</option>
                     </select>
                 </div>
-                <button type="button" class="btn btn-info">Search</button>
             </form>
             <br />
             @if (this.User.IsInRole("Administrator"))
             {
-                <a class="btn btn-primary" asp-area="Administration" asp-controller="TVShows" asp-action="Create">Add TV Show</a>
+                <a class="btn btn-primary"  style="width: 245px"  asp-area="Administration" asp-controller="TVShows" asp-action="Create">Add TV Show</a>
             }
         </div>
 
@@ -39,17 +39,17 @@
                 {
                     <div class="col-md-4 media">
                         <div class="media-body">
-                            <div class="card bg-info">
+                            <div class="card bg-primary">
                                 <img class="card-img-top" src="@tvshow.ImageUrl" alt="Card image cap" height="200" width="200">
                                 <div class="card-body">
                                     @{
                                         if (this.User.IsInRole("Administrator"))
                                         {
-                                            <a class="btn btn-success" a href="/Administration/TVShows/TVShowView/?title=@tvshow.Title" style="text-decoration:none">@tvshow.Title</a>
+                                            <a class="btn btn-info" a href="/Administration/TVShows/TVShowView/?title=@tvshow.Title" style="text-decoration:none">@tvshow.Title</a>
                                         }
                                         else
                                         {
-                                            <a class="btn btn-success" a href="/TVShows/TVShowView/?title=@tvshow.Title" style="text-decoration:none">@tvshow.Title</a>
+                                            <a class="btn btn-info" a href="/TVShows/TVShowView/?title=@tvshow.Title" style="text-decoration:none">@tvshow.Title</a>
                                         }
                                     }
                                 </div>

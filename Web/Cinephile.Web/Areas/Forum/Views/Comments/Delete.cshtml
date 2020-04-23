@@ -1,0 +1,26 @@
+﻿@model Cinephile.Web.ViewModels.Comments.CommentEditModel
+
+
+    <form method="post" asp-area="Forum" asp-controller="Comments" asp-action="Delete">
+        <div>
+            <label asp-for="Content"></label>
+            <textarea asp-for="Content" class="form-control"></textarea>
+            <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
+        <hr />
+        <button type="submit" class="btn btn-warning">Delete</button>
+        <a class="btn btn-success" href="/Forum/Posts/ById/@Model.PostId">Back</a>
+    </form>
+
+@section Scripts {
+    <script src="/lib/tinymce/tinymce.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: "textarea",
+            plugins: [
+                "image paste table link code media"
+            ]
+        });
+    </script>
+}
+

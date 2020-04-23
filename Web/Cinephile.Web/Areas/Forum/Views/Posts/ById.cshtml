@@ -4,13 +4,7 @@
 }
 <hr />
 <div class="alert alert-dark">
-    <div class="media-body text-warning m-md-2">
-        Posted @Model.CreatedOn.ToString("dd/MM/yyyy")
-    </div>
-    <div class="card flex-row flex-wrap alert-light">
-        <div class="card-header border-0">
-            <img src="//placehold.it/200" alt="">
-        </div>
+    <div class="card flex-row flex-wrap alert-primary">
         <div class="card-block px-2">
             <br>
             <h3 class="card-title">@Model.Title</h3>
@@ -19,18 +13,20 @@
         <div class="w-50"></div>
         <div class="card-footer w-100 text-muted">
             <div class="media flex-wrap w-100 align-items-center">
-                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/2.jpg" class="d-block ui-w-40 rounded-circle" alt="">
                 <div class="media-body ml-3">
                     <a href="/Users/UserPosts/?username=@Model.UserUserName" style="text-decoration:none"><font color="#ffffff">@Model.UserUserName</font></a>
                 </div>
+                <div class="text-white">
+                    @Model.CreatedOn.ToString("dd/MM/yyyy")
+                </div>
                 <div class="text-muted small ml-3">
-                    @if (this.User.Identity.Name == Model.UserUserName && this.User.Identity.IsAuthenticated)
+                    @if (this.User.Identity.Name == Model.UserUserName || this.User.IsInRole("Administrator"))
                     {
                         <a class="btn btn-warning" a href="/Forum/Posts/Delete/@Model.Id" style="text-decoration:none">Delete</a>
                     }
                 </div>
                 <div class="text-muted small ml-3">
-                    @if (this.User.Identity.Name == Model.UserUserName && this.User.Identity.IsAuthenticated)
+                    @if (this.User.Identity.Name == Model.UserUserName || this.User.IsInRole("Administrator"))
                     {
                         <a class="btn btn-success" a href="/Forum/Posts/Edit/@Model.Id" style="text-decoration:none">Edit</a>
                     }
@@ -58,14 +54,28 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <div class="media flex-wrap w-100 align-items-center">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/2.jpg" class="d-block ui-w-40 rounded-circle" alt="">
                                 <div class="media-body ml-3">
-                                    @comment.UserUserName
+                                    <a href="/Users/UserPosts/?username=@comment.UserUserName" style="text-decoration:none"><font color="#ffffff">@comment.UserUserName</font></a>
                                 </div>
-                                <div class="text-muted small ml-3">
+                                <div>
+                                    @comment.CreatedOn.ToString("dd/mm/yyyy HH:MM:ss")
+                                </div>
+                                <div>
+                                    @if (this.User.Identity.Name == comment.UserUserName || this.User.IsInRole("Administrator"))
+                                    {
+                                        <a class="px-4 pt-3" btn btn-success" a href="/Forum/Comments/Edit/@comment.Id" style="color:forestgreen">Edit</a>
+                                    }
+                                </div>
+                                <div>
+                                    @if (this.User.Identity.Name == comment.UserUserName || this.User.IsInRole("Administrator"))
+                                    {
+                                        <a class="px-4 pt-3"  btn btn-warning" a href="/Forum/Comments/Delete/@comment.Id" style="color:red">Delete</a>
+                                    }
+                                </div>
+                                <div>
                                     @if (this.User.Identity.IsAuthenticated)
                                     {
-                                        <div class="px-4 pt-3"> <button type="button" class="btn btn-secondary" onclick="showAddCommentForm(@comment.Id)"><i class="fa fa-plus"></i>&nbsp; Answer</button> </div>
+                                        <div class="px-4 pt-3"> <button type="button" class="btn btn-primary" onclick="showAddCommentForm(@comment.Id)"><i class="fa fa-plus"></i>&nbsp;Reply</button> </div>
                                     }
                                 </div>
                             </div>

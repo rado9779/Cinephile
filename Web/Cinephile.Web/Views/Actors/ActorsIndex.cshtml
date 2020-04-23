@@ -3,19 +3,19 @@
     ViewData["Title"] = "ActorsIndex";
 }
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="/Actors/ActorsIndex">Actors</a>
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
         </ul>
+        @if (this.User.IsInRole("Administrator"))
+        {
+            <a class="btn btn-success" asp-area="Administration" asp-controller="Actors" asp-action="Create">Add Actor</a>
+        }
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search">
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
-        @if (this.User.IsInRole("Administrator"))
-        {
-            <a class="btn btn-primary" asp-area="Administration" asp-controller="Actors" asp-action="Create">Add Actor</a>
-        }
     </div>
 </nav>
 <hr />
@@ -25,17 +25,17 @@
     {
         <div class="col-md-3 media">
             <div class="media-body">
-                <div class="card bg-info">
+                <div class="card bg-primary">
                     <img class="card-img-top" src="@actor.ImageUrl" alt="Card image cap" height="200" width="200">
                     <div class="card-body">
                         @{
                             if (this.User.IsInRole("Administrator"))
                             {
-                                <a class="btn btn-success" a href="/Administration/Actors/ActorView/?name=@actor.FirstName" style="text-decoration:none">@actor.FirstName @actor.LastName</a>
+                                <div class="text-center"><a class="btn btn-info" a href="/Administration/Actors/ActorView/?name=@actor.FirstName" style="text-decoration:none">@actor.FirstName @actor.LastName</a></div>
                             }
                             else
                             {
-                                <a class="btn btn-success" a href="/Actors/ActorView/?name=@actor.FirstName" style="text-decoration:none">@actor.FirstName @actor.LastName</a>
+                    <div class="text-center"><a class="btn btn-info" a href="/Actors/ActorView/?name=@actor.FirstName" style="text-decoration:none">@actor.FirstName @actor.LastName</a></div>
                             }
                         }
                     </div>
