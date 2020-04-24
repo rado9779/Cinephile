@@ -1,5 +1,8 @@
 ﻿namespace Cinephile.Web.Controllers
 {
+    using System;
+
+    using Cinephile.Common;
     using Cinephile.Services.Data;
     using Cinephile.Web.ViewModels.Movies;
     using Microsoft.AspNetCore.Authorization;
@@ -7,6 +10,7 @@
 
     public class MoviesController : Controller
     {
+        private const int ItemsPerPage = GlobalConstants.MoviesPerPage;
         private readonly IMoviesService moviesService;
 
         public MoviesController(IMoviesService moviesService)
@@ -15,12 +19,29 @@
         }
 
         [HttpGet]
-        public IActionResult MoviesIndex()
+        public IActionResult MoviesIndex(int page = 1)
         {
-            var viewModel = new AllMoviesViewModel()
+            var viewModel = new AllMoviesViewModel();
+
+            if (viewModel == null)
             {
-                Movies = this.moviesService.GetAll<MovieViewModel>(),
-            };
+                return this.NotFound();
+
+            }
+
+            viewModel.Movies = this.moviesService.GetByMoviesForPage<MovieViewModel>(ItemsPerPage, (page - 1) * ItemsPerPage);
+
+            var count = this.moviesService.GetMoviesCount();
+
+            viewModel.PagesCount = (int)Math.Ceiling((double)count / ItemsPerPage);
+
+            if (viewModel.PagesCount == 0)
+            {
+                viewModel.PagesCount = 1;
+            }
+
+            viewModel.CurrentPage = page;
+
             return this.View(viewModel);
         }
 

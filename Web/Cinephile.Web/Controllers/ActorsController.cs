@@ -1,14 +1,16 @@
 ﻿namespace Cinephile.Web.Controllers
 {
+    using System;
+
+    using Cinephile.Common;
     using Cinephile.Services.Data;
     using Cinephile.Web.ViewModels.Actors;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using System;
 
     public class ActorsController : Controller
     {
-        private const int ItemsPerPage = 1;
+        private const int ItemsPerPage = GlobalConstants.ActorsPerPage;
 
         private readonly IActorsService actorsService;
 

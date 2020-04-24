@@ -20,5 +20,9 @@
         Task Edit(MovieEditModel input);
 
         Task Delete(MovieEditModel input);
+
+        IEnumerable<T> GetByMoviesForPage<T>(int? take = null, int skip = 0);
+
+        int GetMoviesCount();
     }
 }

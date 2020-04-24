@@ -11,5 +11,11 @@
         public const string AdministratorEmail = "admin@gmail.com";
 
         public const string AdministratorPassword = "123456";
+
+        public const int MoviesPerPage = 9;
+
+        public const int TVShowsPerPage = 9;
+
+        public const int ActorsPerPage = 8;
     }
 }

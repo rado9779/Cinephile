@@ -131,5 +131,26 @@
             await this.tvshowRepository.SaveChangesAsync();
         }
 
+        public IEnumerable<T> GetTVShowsForPage<T>(int? take = null, int skip = 0)
+        {
+            var query = this.tvshowRepository
+                  .All()
+                  .OrderByDescending(x => x.CreatedOn)
+                  .Skip(skip);
+
+            if (take.HasValue)
+            {
+                query = query.Take(take.Value);
+            }
+
+            return query.To<T>().ToList();
+        }
+
+        public int GetTVShowsCount()
+        {
+            return this.tvshowRepository
+                .All()
+                .Count();
+        }
     }
 }

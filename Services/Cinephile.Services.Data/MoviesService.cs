@@ -126,5 +126,26 @@
             await this.moviesRepository.SaveChangesAsync();
         }
 
+        public IEnumerable<T> GetByMoviesForPage<T>(int? take = null, int skip = 0)
+        {
+            var query = this.moviesRepository
+                  .All()
+                  .OrderByDescending(x => x.CreatedOn)
+                  .Skip(skip);
+
+            if (take.HasValue)
+            {
+                query = query.Take(take.Value);
+            }
+
+            return query.To<T>().ToList();
+        }
+
+        public int GetMoviesCount()
+        {
+            return this.moviesRepository
+                .All()
+                .Count();
+        }
     }
 }

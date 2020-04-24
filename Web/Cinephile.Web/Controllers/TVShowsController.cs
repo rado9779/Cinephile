@@ -1,5 +1,8 @@
 ﻿namespace Cinephile.Web.Controllers
 {
+    using System;
+
+    using Cinephile.Common;
     using Cinephile.Services.Data;
     using Cinephile.Web.ViewModels.TVShows;
     using Microsoft.AspNetCore.Authorization;
@@ -7,6 +10,8 @@
 
     public class TVShowsController : Controller
     {
+        private const int ItemsPerPage = GlobalConstants.TVShowsPerPage;
+
         private readonly ITVShowsService tvshowsService;
 
         public TVShowsController(ITVShowsService tvshowsService)
@@ -15,13 +20,28 @@
         }
 
         [HttpGet]
-        public IActionResult TVShowsIndex()
+        public IActionResult TVShowsIndex(int page = 1)
         {
-            var viewModel = new AllTVShowsViewModel()
+            var viewModel = new AllTVShowsViewModel();
+
+            if (viewModel == null)
             {
-                TVShows = this.tvshowsService
-                .GetAll<TVShowViewModel>(),
-            };
+                return this.NotFound();
+            }
+
+            viewModel.TVShows = this.tvshowsService.GetTVShowsForPage<TVShowViewModel>(ItemsPerPage, (page - 1) * ItemsPerPage);
+
+            var count = this.tvshowsService.GetTVShowsCount();
+
+            viewModel.PagesCount = (int)Math.Ceiling((double)count / ItemsPerPage);
+
+            if (viewModel.PagesCount == 0)
+            {
+                viewModel.PagesCount = 1;
+            }
+
+            viewModel.CurrentPage = page;
+
             return this.View(viewModel);
         }
 

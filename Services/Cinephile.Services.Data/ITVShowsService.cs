@@ -22,5 +22,9 @@
         Task Edit(TVShowsEditModel input);
 
         Task Delete(TVShowsEditModel input);
+
+        IEnumerable<T> GetTVShowsForPage<T>(int? take = null, int skip = 0);
+
+        int GetTVShowsCount();
     }
 }
