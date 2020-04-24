@@ -9,6 +9,8 @@
     {
         IEnumerable<T> GetAll<T>(int? count = null);
 
+        IEnumerable<T> GetAllByQuery<T>(string input);
+
         Task Create(MovieCreateModel input);
 
         T GetByTitle<T>(string title);

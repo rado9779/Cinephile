@@ -55,6 +55,21 @@
             return query.To<T>().ToList();
         }
 
+        public IEnumerable<T> GetAllByQuery<T>(string input)
+        {
+            IQueryable<Movie> query = this.moviesRepository
+                  .All();
+
+            if (input != null)
+            {
+                query = this.moviesRepository
+                   .All()
+                   .Where(x => x.Title.Contains(input));
+            }
+
+            return query.To<T>().ToList();
+        }
+
         public async Task Create(MovieCreateModel input)
         {
             var movie = new Movie()
@@ -110,5 +125,6 @@
             this.moviesRepository.Update(movie);
             await this.moviesRepository.SaveChangesAsync();
         }
+
     }
 }

@@ -41,6 +41,21 @@
             return tvshow;
         }
 
+        public IEnumerable<T> GetAllByQuery<T>(string input)
+        {
+            IQueryable<TVShow> query = this.tvshowRepository
+                   .All();
+
+            if (input != null)
+            {
+                query = this.tvshowRepository
+                  .All()
+                  .Where(x => x.Title.Contains(input));
+            }
+
+            return query.To<T>().ToList();
+        }
+
         public IEnumerable<T> GetAll<T>(int? count = null)
         {
             IQueryable<TVShow> query = this.tvshowRepository
@@ -115,5 +130,6 @@
             this.tvshowRepository.Update(tvshow);
             await this.tvshowRepository.SaveChangesAsync();
         }
+
     }
 }

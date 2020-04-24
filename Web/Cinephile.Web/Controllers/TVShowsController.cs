@@ -2,6 +2,7 @@
 {
     using Cinephile.Services.Data;
     using Cinephile.Web.ViewModels.TVShows;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class TVShowsController : Controller
@@ -29,6 +30,22 @@
         {
             var viewModel = this.tvshowsService
                 .GetByTitle<TVShowViewModel>(title);
+
+            return this.View(viewModel);
+        }
+
+        [Authorize]
+        public IActionResult TVShowsByQuery(string input)
+        {
+            var viewModel = new AllTVShowsViewModel
+            {
+                TVShows = this.tvshowsService.GetAllByQuery<TVShowViewModel>(input),
+            };
+
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
 
             return this.View(viewModel);
         }

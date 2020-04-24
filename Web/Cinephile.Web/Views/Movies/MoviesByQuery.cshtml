@@ -1,16 +1,15 @@
-﻿@model Cinephile.Web.ViewModels.TVShows.AllTVShowsViewModel
+﻿@model Cinephile.Web.ViewModels.Movies.AllMoviesViewModel
 @{
-    ViewData["Title"] = "TVShowsIndex";
+    ViewData["Title"] = "Search Movies";
 }
-
 <hr />
 <div class="container-fluid">
     <div class="row content">
         <div class="col-3 sidenav">
-                <div class="text-center"><h1>TVShows</h1></div>
+                <div class="text-center"><h1>Movies</h1></div>
                 <hr />
-                <form class="form-inline  my-2 my-lg-0" asp-area="" asp-controller="TVShows" asp-action="TVShowsByQuery">
-                    <input class="form-control" style="width: 245px" type="text" name="input" placeholder="Search TV Show">
+                <form class="form-inline  my-2 my-lg-0" asp-area="" asp-controller="Movies" asp-action="MoviesByQuery">
+                    <input class="form-control" style="width: 245px" type="text" name="input" placeholder="Search Movie">
                     <input class="btn btn-info" style="width: 245px" type="submit" value="Search" />
                 </form>
                 <br />
@@ -27,27 +26,27 @@
             <br />
             @if (this.User.IsInRole("Administrator"))
             {
-                <a class="btn btn-primary"  style="width: 245px"  asp-area="Administration" asp-controller="TVShows" asp-action="Create">Add TV Show</a>
+                <a class="btn btn-primary" style="width: 245px" asp-area="Administration" asp-controller="Movies" asp-action="Create">Add Movie</a>
             }
         </div>
 
         <div class="col-md-40 media-body">
             <div class="row">
-                @foreach (var tvshow in Model.TVShows)
+                @foreach (var movie in Model.Movies)
                 {
                     <div class="col-md-4 media">
                         <div class="media-body">
                             <div class="card bg-primary">
-                                <img class="card-img-top" src="@tvshow.ImageUrl" alt="Card image cap" height="200" width="200">
+                                <img class="card-img-top" src="@movie.ImageUrl" alt="Card image cap" height="200" width="200">
                                 <div class="card-body">
                                     @{
                                         if (this.User.IsInRole("Administrator"))
                                         {
-                                            <a class="btn btn-info" a href="/Administration/TVShows/TVShowView/?title=@tvshow.Title" style="text-decoration:none">@tvshow.Title</a>
+                                            <div class="text-center"><a class="btn btn-info" a href="/Administration/Movies/MovieView/?title=@movie.Title" style="text-decoration:none">@movie.Title</a></div>
                                         }
                                         else
                                         {
-                                            <a class="btn btn-info" a href="/TVShows/TVShowView/?title=@tvshow.Title" style="text-decoration:none">@tvshow.Title</a>
+                                            <div class="text-center"><a class="btn btn-info" a href="/Movies/MovieView/?title=@movie.Title" style="text-decoration:none">@movie.Title</a> </div>
                                         }
                                     }
                                 </div>
@@ -60,4 +59,3 @@
         </div>
     </div>
 </div>
-

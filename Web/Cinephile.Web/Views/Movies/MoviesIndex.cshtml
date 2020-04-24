@@ -6,13 +6,12 @@
 <div class="container-fluid">
     <div class="row content">
         <div class="col-3 sidenav">
-            <form>
                 <div class="text-center"><h1>Movies</h1></div>
                 <hr />
-                <div class="form-group">
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Title">
-                </div>
-                <button type="button" style="width: 245px" class="btn btn-info">Search</button>
+                <form class="form-inline  my-2 my-lg-0" asp-area="" asp-controller="Movies" asp-action="MoviesByQuery">
+                    <input class="form-control" style="width: 245px" type="text" name="input" placeholder="Search Movie">
+                    <input class="btn btn-info" style="width: 245px"  type="submit" value="Search" />
+                </form>
                 <br />
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Genre</label>
@@ -24,7 +23,6 @@
                         <option>5</option>
                     </select>
                 </div>
-            </form>
             <br />
             @if (this.User.IsInRole("Administrator"))
             {

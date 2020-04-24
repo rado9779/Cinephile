@@ -41,6 +41,21 @@
             return actor;
         }
 
+        public IEnumerable<T> GetAllByQuery<T>(string input)
+        {
+            IQueryable<Actor> query = this.actorsRepository
+                  .All();
+
+            if (input != null)
+            {
+                query = this.actorsRepository
+                 .All()
+                 .Where(x => x.FirstName.Contains(input) || x.LastName.Contains(input));
+            }
+
+            return query.To<T>().ToList();
+        }
+
         public IEnumerable<T> GetAll<T>(int? count = null)
         {
             IQueryable<Actor> query = this.actorsRepository
