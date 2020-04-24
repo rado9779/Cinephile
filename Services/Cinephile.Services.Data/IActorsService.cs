@@ -22,5 +22,9 @@
         Task Edit(ActorEditModel input);
 
         Task Delete(ActorEditModel input);
+
+        IEnumerable<T> GetByActorsForPage<T>(int? take = null, int skip = 0);
+
+        int GetActorsCount();
     }
 }

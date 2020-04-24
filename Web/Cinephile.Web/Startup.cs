@@ -116,6 +116,7 @@
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapControllerRoute("postRoute", "{area=Forum}/{controller=Posts}/{action=ById}/{id?}");
                         endpoints.MapControllerRoute("forumCategoryRoute", "{area=Forum}/{controller=Categories}/{action=CategoryByName}/{categoryName?}");
+                        endpoints.MapControllerRoute("actorsRoute", "{area:exists}/{controller=Actors}/{action=ActorsIndex}");
                         endpoints.MapRazorPages();
                     });
 

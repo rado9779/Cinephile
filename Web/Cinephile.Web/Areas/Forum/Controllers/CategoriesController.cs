@@ -35,6 +35,7 @@
         {
             var viewModel =
                this.categoriesService.GetByName<CategoryViewModel>(categoryName);
+
             if (viewModel == null)
             {
                 return this.NotFound();

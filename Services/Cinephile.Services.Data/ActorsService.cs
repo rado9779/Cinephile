@@ -121,5 +121,27 @@
             this.actorsRepository.Update(actor);
             await this.actorsRepository.SaveChangesAsync();
         }
+
+        public IEnumerable<T> GetByActorsForPage<T>(int? take = null, int skip = 0)
+        {
+            var query = this.actorsRepository
+                .All()
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip(skip);
+
+            if (take.HasValue)
+            {
+                query = query.Take(take.Value);
+            }
+
+            return query.To<T>().ToList();
+        }
+
+        public int GetActorsCount()
+        {
+            return this.actorsRepository
+               .All()
+               .Count();
+        }
     }
 }
