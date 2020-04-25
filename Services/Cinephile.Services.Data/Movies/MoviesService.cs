@@ -13,10 +13,14 @@
     public class MoviesService : IMoviesService
     {
         private readonly IDeletableEntityRepository<Movie> moviesRepository;
+        private readonly IDeletableEntityRepository<Genre> genresRepository;
 
-        public MoviesService(IDeletableEntityRepository<Movie> moviesRepository)
+        public MoviesService(
+            IDeletableEntityRepository<Movie> moviesRepository,
+            IDeletableEntityRepository<Genre> genresRepository)
         {
             this.moviesRepository = moviesRepository;
+            this.genresRepository = genresRepository;
         }
 
         public T GetById<T>(int id)
@@ -146,6 +150,16 @@
             return this.moviesRepository
                 .All()
                 .Count();
+        }
+
+        public IEnumerable<T> GetAllGenres<T>(int? count = null)
+        {
+            var genres = this.genresRepository.
+                All();
+
+            return genres
+                .To<T>()
+                .ToList();
         }
     }
 }

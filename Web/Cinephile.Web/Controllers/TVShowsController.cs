@@ -4,6 +4,7 @@
 
     using Cinephile.Common;
     using Cinephile.Services.Data;
+    using Cinephile.Web.ViewModels.Genres;
     using Cinephile.Web.ViewModels.TVShows;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,7 @@
                 return this.NotFound();
             }
 
+            viewModel.Genres = this.tvshowsService.GetAllGenres<GenreViewModel>();
             viewModel.TVShows = this.tvshowsService.GetTVShowsForPage<TVShowViewModel>(ItemsPerPage, (page - 1) * ItemsPerPage);
 
             var count = this.tvshowsService.GetTVShowsCount();

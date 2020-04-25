@@ -24,5 +24,7 @@
         IEnumerable<T> GetByMoviesForPage<T>(int? take = null, int skip = 0);
 
         int GetMoviesCount();
+
+        IEnumerable<T> GetAllGenres<T>(int? count = null);
     }
 }

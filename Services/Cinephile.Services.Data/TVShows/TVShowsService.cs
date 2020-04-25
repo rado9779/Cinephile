@@ -13,10 +13,13 @@
     public class TVShowsService : ITVShowsService
     {
         private readonly IDeletableEntityRepository<TVShow> tvshowRepository;
+        private readonly IDeletableEntityRepository<Genre> genresRepository;
 
-        public TVShowsService(IDeletableEntityRepository<TVShow> tvshowRepository)
+        public TVShowsService(IDeletableEntityRepository<TVShow> tvshowRepository,
+            IDeletableEntityRepository<Genre> genresRepository)
         {
             this.tvshowRepository = tvshowRepository;
+            this.genresRepository = genresRepository;
         }
 
         public T GetById<T>(int id)
@@ -151,6 +154,16 @@
             return this.tvshowRepository
                 .All()
                 .Count();
+        }
+
+        public IEnumerable<T> GetAllGenres<T>(int? count = null)
+        {
+            var genres = this.genresRepository.
+                All();
+
+            return genres
+                .To<T>()
+                .ToList();
         }
     }
 }

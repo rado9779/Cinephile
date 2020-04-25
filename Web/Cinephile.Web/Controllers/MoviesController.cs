@@ -4,6 +4,7 @@
 
     using Cinephile.Common;
     using Cinephile.Services.Data;
+    using Cinephile.Web.ViewModels.Genres;
     using Cinephile.Web.ViewModels.Movies;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -26,9 +27,9 @@
             if (viewModel == null)
             {
                 return this.NotFound();
-
             }
 
+            viewModel.Genres = this.moviesService.GetAllGenres<GenreViewModel>();
             viewModel.Movies = this.moviesService.GetByMoviesForPage<MovieViewModel>(ItemsPerPage, (page - 1) * ItemsPerPage);
 
             var count = this.moviesService.GetMoviesCount();
