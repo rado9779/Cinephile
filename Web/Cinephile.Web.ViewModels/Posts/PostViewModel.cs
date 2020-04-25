@@ -32,6 +32,10 @@
 
         public IEnumerable<PostCommentsViewModel> Comments { get; set; }
 
+        public int CurrentPage { get; set; }
+
+        public int PagesCount { get; set; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Post, PostViewModel>();

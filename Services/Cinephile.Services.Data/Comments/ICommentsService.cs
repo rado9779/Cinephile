@@ -16,5 +16,9 @@
         Task Edit(CommentEditModel input);
 
         Task Delete(CommentEditModel input);
+
+        IEnumerable<T> GetByPostId<T>(int postId, int? take = null, int skip = 0);
+
+        int GetCountByPostId(int postId);
     }
 }

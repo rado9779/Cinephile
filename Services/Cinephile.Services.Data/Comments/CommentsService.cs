@@ -81,5 +81,28 @@
             this.commentsRepository.Update(comment);
             await this.commentsRepository.SaveChangesAsync();
         }
+
+        public IEnumerable<T> GetByPostId<T>(int postId, int? take = null, int skip = 0)
+        {
+            var query = this.commentsRepository
+                .All()
+                .OrderByDescending(x => x.CreatedOn)
+                .Where(x => x.PostId == postId)
+                .Skip(skip);
+
+            if (take.HasValue)
+            {
+                query = query.Take(take.Value);
+            }
+
+            return query.To<T>().ToList();
+        }
+
+        public int GetCountByPostId(int postId)
+        {
+            return this.commentsRepository
+                 .All()
+                 .Count(x => x.PostId == postId);
+        }
     }
 }

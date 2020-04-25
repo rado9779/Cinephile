@@ -2,6 +2,7 @@
 {
     using System;
 
+    using Cinephile.Common;
     using Cinephile.Services.Data;
     using Cinephile.Web.ViewModels.Categories;
     using Microsoft.AspNetCore.Mvc;
@@ -9,7 +10,7 @@
     [Area("Forum")]
     public class CategoriesController : Controller
     {
-        private const int ItemsPerPage = 5;
+        private const int ItemsPerPage = GlobalConstants.PostsPerPage;
 
         private readonly ICategoriesService categoriesService;
         private readonly IPostsService postsService;

@@ -1,8 +1,10 @@
 ﻿namespace ForumSystem.Web.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using AutoMapper;
+    using Cinephile.Common;
     using Cinephile.Data.Models;
     using Cinephile.Services.Data;
     using Cinephile.Services.Mapping;
@@ -14,32 +16,50 @@
     [Area("Forum")]
     public class PostsController : Controller
     {
+        private const int ItemsPerPage = GlobalConstants.CommentsPerPage;
+
         private readonly IPostsService postsService;
         private readonly ICategoriesService categoriesService;
+        private readonly ICommentsService commentsService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IMapper mapper;
 
         public PostsController(
             IPostsService postsService,
             ICategoriesService categoriesService,
+            ICommentsService commentsService,
             UserManager<ApplicationUser> userManager)
         {
             this.postsService = postsService;
             this.categoriesService = categoriesService;
+            this.commentsService = commentsService;
             this.userManager = userManager;
         }
 
         [HttpGet]
-        public IActionResult ById(int id)
+        public IActionResult ById(int id, int page = 1)
         {
-            var postViewModel = this.postsService.GetById<PostViewModel>(id);
+            var viewModel =
+              this.postsService.GetById<PostViewModel>(id);
 
-            if (postViewModel == null)
+            if (viewModel == null)
             {
                 return this.NotFound();
             }
 
-            return this.View(postViewModel);
+            viewModel.Comments = this.commentsService.GetByPostId<PostCommentsViewModel>(viewModel.Id, ItemsPerPage, (page - 1) * ItemsPerPage);
+
+            var count = this.commentsService.GetCountByPostId(viewModel.Id);
+            viewModel.PagesCount = (int)Math.Ceiling((double)count / ItemsPerPage);
+
+            if (viewModel.PagesCount == 0)
+            {
+                viewModel.PagesCount = 1;
+            }
+
+            viewModel.CurrentPage = page;
+
+            return this.View(viewModel);
         }
 
         [Authorize]

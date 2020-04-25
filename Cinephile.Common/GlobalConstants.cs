@@ -17,5 +17,9 @@
         public const int TVShowsPerPage = 9;
 
         public const int ActorsPerPage = 8;
+
+        public const int PostsPerPage = 10;
+
+        public const int CommentsPerPage = 5;
     }
 }
