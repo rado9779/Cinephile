@@ -3,6 +3,7 @@
     using System.Reflection;
 
     using Cinephile.Services.Mapping;
+    using Cinephile.Web.ViewModels.Categories;
     using Cinephile.Web.ViewModels.Comments;
 
     public class MapperInitializer
@@ -10,7 +11,8 @@
         public static void InitializeMapper()
         {
             AutoMapperConfig.RegisterMappings(
-                typeof(CommentEditModel).GetTypeInfo().Assembly);
+                typeof(CommentEditModel).GetTypeInfo().Assembly,
+                typeof(CategoryViewModel).GetTypeInfo().Assembly);
         }
     }
 }

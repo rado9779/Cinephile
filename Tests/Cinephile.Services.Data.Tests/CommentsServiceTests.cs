@@ -141,9 +141,8 @@
             Assert.Equal(5, result.Count);
         }
 
-
         [Fact]
-        public async Task GetAll_WithNullData_ShouldThrowException()
+        public async Task GetAll_WithNullData_ShouldThrowEmptyResult()
         {
             MapperInitializer.InitializeMapper();
             var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
