@@ -91,6 +91,12 @@
                 Country = input.Country,
             };
 
+            var movieGenre = this.genresRepository
+                .All()
+                .FirstOrDefault(x => x.Id == input.GenreId);
+
+            movie.Genres.Add(movieGenre);
+
             await this.moviesRepository.AddAsync(movie);
             await this.moviesRepository.SaveChangesAsync();
         }
@@ -166,7 +172,7 @@
         {
             IQueryable<Movie> query = this.moviesRepository
                   .All()
-                  .Where(m => m.Genres.All(g => g.Name == genre));
+                  .Where(m => m.Genres.Any(g => g.Name == genre));
 
             return query.To<T>().ToList();
         }

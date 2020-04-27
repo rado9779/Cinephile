@@ -4,85 +4,87 @@
 }
 
 
-    <body>
-        <div class="container">
-            <div class="row align-items-center my-5">
-                <div class="col-lg-5">
-                    <img class="card-img-top" src="@Model.ImageUrl" alt="Card image cap" height="200" width="200">
-                </div>
-                <div class="col-lg-7">
-                    <h1 class="font-weight-light">@Model.Title (@Model.Year)</h1>
-                    <h4>Overview</h4>
-                    <p>@Model.Description</p>
-                </div>
+<body>
+    <div class="container">
+        <div class="row align-items-center my-5">
+            <div class="col-lg-5">
+                <img class="card-img-top" src="@Model.ImageUrl" alt="Card image cap" height="200" width="200">
             </div>
-            <div class="card text-white bg-active my-5 py-4 text-center">
-                <div class="card-body">
-                    <button onclick="location.href='@Model.HomePageLink'" class="btn btn-secondary">HomePage</button>
-                    <button onclick="location.href='@Model.IMDBLink'" class="btn btn-primary">IMDb</button>
-                    <button onclick="location.href='@Model.TrailerLink'" class="btn btn-warning">YouTube</button>
-                    <button onclick="location.href='@Model.FacebookLink'" class="btn btn-info">Facebook</button>
-                </div>
+            <div class="col-lg-7">
+                <h1 class="font-weight-light">@Model.Title (@Model.Year)</h1>
+                <h4>Overview</h4>
+                <p>@Model.Description</p>
             </div>
-            <div class="row">
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Creators</h2>
-                            <ul>
-                                <li>@Model.Creater</li>
-                            </ul>
-                            <h2 class="card-title">Producers</h2>
-                            <ul>
-                                <li>@Model.Producer</li>
-                            </ul>
-                        </div>
+        </div>
+        <div class="card text-white bg-active my-5 py-4 text-center">
+            <div class="card-body">
+                <button onclick="location.href='@Model.HomePageLink'" class="btn btn-secondary">HomePage</button>
+                <button onclick="location.href='@Model.IMDBLink'" class="btn btn-primary">IMDb</button>
+                <button onclick="location.href='@Model.TrailerLink'" class="btn btn-warning">YouTube</button>
+                <button onclick="location.href='@Model.FacebookLink'" class="btn btn-info">Facebook</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">Creators</h2>
+                        <ul>
+                            <li>@Model.Creater</li>
+                        </ul>
+                        <h2 class="card-title">Producers</h2>
+                        <ul>
+                            <li>@Model.Producer</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Actors</h2>
-                            <ul>
-                                <li>Bob Odenkirk</li>
-                                <li>Jonathan Banks</li>
-                                <li>Patrick Fabian</li>
-                            </ul>
-                        </div>
+            </div>
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">Actors</h2>
+                        <ul>
+                            <li>Bob Odenkirk</li>
+                            <li>Jonathan Banks</li>
+                            <li>Patrick Fabian</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h3 class="card-title">Genre</h3>
-                            <ul>
-                                <li>Crime Drama</li>
-                                <li>BlackComedy</li>
-                            </ul>
-                            <h3 class="card-title">Release</h3>
-                            <ul>
-                                <li>February 8, 2015</li>
-                            </ul>
-                            <h3 class="card-title">Country</h3>
-                            <ul>
-                                <li>@Model.Country</li>
-                            </ul>
-                        </div>
+            </div>
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">Genre</h3>
+                        <ul>
+                            @foreach (var genre in Model.Genres)
+                            {
+                                <li>@genre.Name</li>
+                            }
+                        </ul>
+                        <h3 class="card-title">Release</h3>
+                        <ul>
+                            <li>February 8, 2015</li>
+                        </ul>
+                        <h3 class="card-title">Country</h3>
+                        <ul>
+                            <li>@Model.Country</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <table class="table table-active d-flex justify-content-center">
-            <tr>
-                <td><a class="btn btn-success " a href="/Administration/Movies/Edit/@Model.Id" style="text-decoration:none;">Edit</a></td>
-                <td><a class="btn btn-warning" a href="/Administration/Movies/Delete/@Model.Id" style="text-decoration:none">Delete</a></td>
+    </div>
+    <table class="table table-active d-flex justify-content-center">
+        <tr>
+            <td><a class="btn btn-success " a href="/Administration/Movies/Edit/@Model.Id" style="text-decoration:none;">Edit</a></td>
+            <td><a class="btn btn-warning" a href="/Administration/Movies/Delete/@Model.Id" style="text-decoration:none">Delete</a></td>
 
-            </tr>
-        </table>
-        <br />
-        <footer class="py-5 bg-dark">
-            <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; Cinephile @DateTime.UtcNow.Year</p>
-            </div>
-        </footer>
-    </body>
+        </tr>
+    </table>
+    <br />
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Cinephile @DateTime.UtcNow.Year</p>
+        </div>
+    </footer>
+</body>

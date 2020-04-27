@@ -94,6 +94,12 @@
                 EndDate = input.EndDate,
             };
 
+            var tvshowGenre = this.genresRepository
+               .All()
+               .FirstOrDefault(x => x.Id == input.GenreId);
+
+            tvshow.Genres.Add(tvshowGenre);
+
             await this.tvshowRepository.AddAsync(tvshow);
             await this.tvshowRepository.SaveChangesAsync();
         }
@@ -171,7 +177,7 @@
         {
             IQueryable<TVShow> query = this.tvshowRepository
                    .All()
-                   .Where(m => m.Genres.All(g => g.Name == genre));
+                   .Where(m => m.Genres.Any(g => g.Name == genre));
 
             return query.To<T>().ToList();
         }

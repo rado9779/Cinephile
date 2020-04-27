@@ -5,6 +5,7 @@
     using Cinephile.Data.Models;
     using Cinephile.Services.Data;
     using Cinephile.Services.Mapping;
+    using Cinephile.Web.ViewModels.Genres;
     using Cinephile.Web.ViewModels.Movies;
     using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +29,14 @@
         [HttpGet]
         public IActionResult Create()
         {
-            return this.View();
+            var genres = this.moviesService.GetAllGenres<GenreViewModel>();
+
+            var viewModel = new MovieCreateModel
+            {
+                Genres = genres,
+            };
+
+            return this.View(viewModel);
         }
 
         [HttpPost]

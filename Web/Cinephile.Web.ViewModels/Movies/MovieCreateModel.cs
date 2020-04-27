@@ -5,6 +5,7 @@
 
     using Cinephile.Data.Models;
     using Cinephile.Services.Mapping;
+    using Cinephile.Web.ViewModels.Genres;
 
     public class MovieCreateModel : IMapTo<Movie>
     {
@@ -32,6 +33,8 @@
 
         public ICollection<ActorMovie> Actors { get; set; }
 
-        public ICollection<Genre> Genres { get; set; }
+        public int GenreId { get; set; }
+
+        public IEnumerable<GenreViewModel> Genres { get; set; }
     }
 }

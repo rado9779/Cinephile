@@ -1,6 +1,7 @@
 ﻿@model Cinephile.Web.ViewModels.Movies.MovieCreateModel
 @{
     ViewData["Title"] = "Create Movie";
+    var genres = Model.Genres.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
 }
 
 <hr />
@@ -63,6 +64,11 @@
         <label asp-for="Country"></label>
         <input asp-for="Country" class="form-control bg-white" />
         <span asp-validation-for="Country" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="GenreId"></label>
+        <select asp-for="GenreId" asp-items="genres" class="form-control bg-white"></select>
+        <span asp-validation-for="GenreId" class="text-danger"></span>
     </div>
     <hr />
     <input type="submit" class="btn btn-primary" value="Submit" />

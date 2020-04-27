@@ -6,6 +6,7 @@
 
     using Cinephile.Data.Models;
     using Cinephile.Services.Mapping;
+    using Cinephile.Web.ViewModels.Genres;
 
     public class TVShowsCreateModel : IMapTo<TVShow>
     {
@@ -35,7 +36,9 @@
 
         public ICollection<ActorTVShow> Actors { get; set; }
 
-        public ICollection<Genre> Genres { get; set; }
+        public int GenreId { get; set; }
+
+        public IEnumerable<GenreViewModel> Genres { get; set; }
 
         public DateTime ReleaseDate { get; set; }
 
