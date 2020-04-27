@@ -62,6 +62,24 @@
             var viewModel = new AllTVShowsViewModel
             {
                 TVShows = this.tvshowsService.GetAllByQuery<TVShowViewModel>(input),
+                Genres = this.tvshowsService.GetAllGenres<GenreViewModel>(),
+            };
+
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
+            return this.View(viewModel);
+        }
+
+        [Authorize]
+        public IActionResult TVShowsByGenre(string genre)
+        {
+            var viewModel = new AllTVShowsViewModel
+            {
+                TVShows = this.tvshowsService.GetAllByGenre<TVShowViewModel>(genre),
+                Genres = this.tvshowsService.GetAllGenres<GenreViewModel>(),
             };
 
             if (viewModel == null)

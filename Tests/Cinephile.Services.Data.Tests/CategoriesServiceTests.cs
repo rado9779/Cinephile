@@ -30,21 +30,7 @@
             Assert.Equal(1, result.Id);
         }
 
-        [Fact]
-        public async Task GetByName_WithIncorrectInput_ShouldZeroResult()
-        {
-            MapperInitializer.InitializeMapper();
-            var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
-            await this.CreateTestCategories(dbContext);
-
-            var repository = new EfDeletableEntityRepository<Category>(dbContext);
-            var service = new CategoriesService(repository);
-
-            var result = service.GetByName<CategoryViewModel>(" ");
-
-            Assert.Equal("People", result.Name);
-            Assert.Equal(1, result.Id);
-        }
+        // TODO: Test with Incorrect Input
 
         [Fact]
         public async Task GetAll_ShouldReturnAllCategories()

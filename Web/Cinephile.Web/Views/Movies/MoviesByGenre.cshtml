@@ -1,26 +1,26 @@
 ﻿@model Cinephile.Web.ViewModels.Movies.AllMoviesViewModel
 @{
-    ViewData["Title"] = "Search Movies";
+    ViewData["Title"] = "Movies";
 }
 <hr />
 <div class="container-fluid">
     <div class="row content">
         <div class="col-3 sidenav">
-            <div class="text-center"><h1>Movies</h1></div>
-            <hr />
-            <form class="form-inline  my-2 my-lg-0" asp-area="" asp-controller="Movies" asp-action="MoviesByQuery">
-                <input class="form-control" style="width: 245px" type="text" name="input" placeholder="Search Movie">
-                <input class="btn btn-info" style="width: 245px" type="submit" value="Search" />
-            </form>
-            <br />
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Genre</label>
+                <div class="text-center"><h1>Movies</h1></div>
+                <hr />
+                <form class="form-inline  my-2 my-lg-0" asp-area="" asp-controller="Movies" asp-action="MoviesByQuery">
+                    <input class="form-control" style="width: 245px" type="text" name="input" placeholder="Search Movie">
+                    <input class="btn btn-info" style="width: 245px" type="submit" value="Search" />
+                </form>
                 <br />
-                @foreach (var genre in Model.Genres)
-                {
-                    <a class="badge badge-primary" href="/Movies/MoviesByGenre/?genre=@genre.Name">@genre.Name</a>
-                }
-            </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Genre</label>
+                    <br />
+                    @foreach (var genre in Model.Genres)
+                    {
+                        <a class="badge badge-primary" href="/Movies/MoviesByGenre/?genre=@genre.Name">@genre.Name</a>
+                    }
+                </div>
             <br />
             @if (this.User.IsInRole("Administrator"))
             {

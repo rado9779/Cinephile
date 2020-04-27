@@ -161,5 +161,14 @@
                 .To<T>()
                 .ToList();
         }
+
+        public IEnumerable<T> GetAllByGenre<T>(string genre)
+        {
+            IQueryable<Movie> query = this.moviesRepository
+                  .All()
+                  .Where(m => m.Genres.All(g => g.Name == genre));
+
+            return query.To<T>().ToList();
+        }
     }
 }

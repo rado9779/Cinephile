@@ -15,7 +15,8 @@
         private readonly IDeletableEntityRepository<TVShow> tvshowRepository;
         private readonly IDeletableEntityRepository<Genre> genresRepository;
 
-        public TVShowsService(IDeletableEntityRepository<TVShow> tvshowRepository,
+        public TVShowsService(
+            IDeletableEntityRepository<TVShow> tvshowRepository,
             IDeletableEntityRepository<Genre> genresRepository)
         {
             this.tvshowRepository = tvshowRepository;
@@ -164,6 +165,15 @@
             return genres
                 .To<T>()
                 .ToList();
+        }
+
+        public IEnumerable<T> GetAllByGenre<T>(string genre)
+        {
+            IQueryable<TVShow> query = this.tvshowRepository
+                   .All()
+                   .Where(m => m.Genres.All(g => g.Name == genre));
+
+            return query.To<T>().ToList();
         }
     }
 }

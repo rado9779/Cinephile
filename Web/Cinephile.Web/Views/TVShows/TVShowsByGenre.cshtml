@@ -1,6 +1,6 @@
 ﻿@model Cinephile.Web.ViewModels.TVShows.AllTVShowsViewModel
 @{
-    ViewData["Title"] = "Search TV Shows";
+    ViewData["Title"] = "TV Shows";
 }
 
 <hr />
@@ -20,7 +20,6 @@
                 @foreach (var genre in Model.Genres)
                 {
                     <a class="badge badge-primary" href="/Movies/MoviesByGenre/?genre=@genre.Name">@genre.Name</a>
-                }
                 }
             </div>
             <br />

@@ -34,7 +34,7 @@
 
         public ICollection<ActorTVShow> Actors { get; set; }
 
-        public ICollection<TVShowGenre> Genres { get; set; }
+        public ICollection<Genre> Genres { get; set; }
 
         public DateTime ReleaseDate { get; set; }
 

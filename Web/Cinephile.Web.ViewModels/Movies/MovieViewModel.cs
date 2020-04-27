@@ -32,7 +32,7 @@
 
         public ICollection<ActorMovie> Actors { get; set; }
 
-        public ICollection<MovieGenre> Genres { get; set; }
+        public ICollection<Genre> Genres { get; set; }
 
         public DateTime ReleaseDate { get; set; }
 

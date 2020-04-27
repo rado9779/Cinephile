@@ -7,26 +7,25 @@
 <div class="container-fluid">
     <div class="row content">
         <div class="col-3 sidenav">
-                <div class="text-center"><h1>TVShows</h1></div>
-                <hr />
-                <form class="form-inline  my-2 my-lg-0" asp-area="" asp-controller="TVShows" asp-action="TVShowsByQuery">
-                    <input class="form-control" style="width: 245px" type="text" name="input" placeholder="Search TV Show">
-                    <input class="btn btn-info" style="width: 245px" type="submit" value="Search" />
-                </form>
+            <div class="text-center"><h1>TVShows</h1></div>
+            <hr />
+            <form class="form-inline  my-2 my-lg-0" asp-area="" asp-controller="TVShows" asp-action="TVShowsByQuery">
+                <input class="form-control" style="width: 245px" type="text" name="input" placeholder="Search TV Show">
+                <input class="btn btn-info" style="width: 245px" type="submit" value="Search" />
+            </form>
+            <br />
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Genre</label>
                 <br />
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Genre</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        @foreach (var genre in Model.Genres)
-                        {
-                            <option>@genre.Name</option>
-                        }
-                    </select>
-                </div>
+                @foreach (var genre in Model.Genres)
+                {
+                    <a class="badge badge-primary" href="/Movies/MoviesByGenre/?genre=@genre.Name">@genre.Name</a>
+                }
+            </div>
             <br />
             @if (this.User.IsInRole("Administrator"))
             {
-                <a class="btn btn-primary"  style="width: 245px"  asp-area="Administration" asp-controller="TVShows" asp-action="Create">Add TV Show</a>
+                <a class="btn btn-primary" style="width: 245px" asp-area="Administration" asp-controller="TVShows" asp-action="Create">Add TV Show</a>
             }
         </div>
 

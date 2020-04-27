@@ -10,7 +10,7 @@
         public TVShow()
         {
             this.Actors = new HashSet<ActorTVShow>();
-            this.Genres = new HashSet<TVShowGenre>();
+            this.Genres = new HashSet<Genre>();
         }
 
         public string ImageUrl { get; set; }
@@ -37,7 +37,7 @@
 
         public ICollection<ActorTVShow> Actors { get; set; }
 
-        public ICollection<TVShowGenre> Genres { get; set; }
+        public ICollection<Genre> Genres { get; set; }
 
         public DateTime ReleaseDate { get; set; }
 

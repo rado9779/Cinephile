@@ -59,6 +59,24 @@
             var viewModel = new AllMoviesViewModel
             {
                 Movies = this.moviesService.GetAllByQuery<MovieViewModel>(input),
+                Genres = this.moviesService.GetAllGenres<GenreViewModel>(),
+            };
+
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
+            return this.View(viewModel);
+        }
+
+        [Authorize]
+        public IActionResult MoviesByGenre(string genre)
+        {
+            var viewModel = new AllMoviesViewModel
+            {
+                Movies = this.moviesService.GetAllByGenre<MovieViewModel>(genre),
+                Genres = this.moviesService.GetAllGenres<GenreViewModel>(),
             };
 
             if (viewModel == null)

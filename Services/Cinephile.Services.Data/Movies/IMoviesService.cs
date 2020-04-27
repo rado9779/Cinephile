@@ -11,6 +11,8 @@
 
         IEnumerable<T> GetAllByQuery<T>(string input);
 
+        IEnumerable<T> GetAllByGenre<T>(string genre);
+
         Task Create(MovieCreateModel input);
 
         T GetByTitle<T>(string title);

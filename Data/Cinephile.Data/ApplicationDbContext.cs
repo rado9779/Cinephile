@@ -44,10 +44,6 @@
 
         public DbSet<ActorTVShow> ActorTVShows { get; set; }
 
-        public DbSet<MovieGenre> MovieGenres { get; set; }
-
-        public DbSet<TVShowGenre> TVShowGenres { get; set; }
-
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -100,12 +96,6 @@
 
             builder.Entity<ActorTVShow>()
                .HasKey(x => new { x.ActorId, x.TVShowId });
-
-            builder.Entity<MovieGenre>()
-               .HasKey(x => new { x.MovieId, x.GenreId });
-
-            builder.Entity<TVShowGenre>()
-              .HasKey(x => new { x.TVShowId, x.GenreId });
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

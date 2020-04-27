@@ -10,7 +10,7 @@
         public Movie()
         {
             this.Actors = new HashSet<ActorMovie>();
-            this.Genres = new HashSet<MovieGenre>();
+            this.Genres = new HashSet<Genre>();
         }
 
         public string ImageUrl { get; set; }
@@ -35,7 +35,7 @@
 
         public ICollection<ActorMovie> Actors { get; set; }
 
-        public ICollection<MovieGenre> Genres { get; set; }
+        public ICollection<Genre> Genres { get; set; }
 
         public DateTime ReleaseDate { get; set; }
 
