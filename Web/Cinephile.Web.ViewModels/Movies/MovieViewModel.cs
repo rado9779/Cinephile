@@ -5,8 +5,9 @@
 
     using Cinephile.Data.Models;
     using Cinephile.Services.Mapping;
+    using Cinephile.Web.ViewModels.Actors;
 
-    public class MovieViewModel : IMapFrom<Movie>
+    public class MovieViewModel : IMapFrom<Movie>, IMapFrom<ActorMovie>
     {
         public int Id { get; set; }
 
@@ -30,7 +31,7 @@
 
         public string Producer { get; set; }
 
-        public ICollection<ActorMovie> Actors { get; set; }
+        public IEnumerable<ActorViewModel> Actors { get; set; }
 
         public ICollection<Genre> Genres { get; set; }
 

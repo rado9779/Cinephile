@@ -46,13 +46,12 @@
             <div class="col-md-4 mb-5">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h2 class="card-title">Acting</h2>
+                        <h2 class="card-title">Movies</h2>
                         <ul>
-                            <li>Ennio: The Maestro</li>
-                            <li>What She Said: The Art of Pauline Kael</li>
-                            <li>Friedkin Uncut</li>
-                            <li>Eli Roth's History of Horror</li>
-                            <li>The Great Buster: A Celebration</li>
+                            @foreach (var movie in Model.Movies)
+                            {
+                                <li>@movie.Title</li>
+                            }
                         </ul>
                     </div>
                 </div>
@@ -60,12 +59,12 @@
             <div class="col-md-4 mb-5">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h3 class="card-title">Style</h3>
+                        <h3 class="card-title">TV-Series</h3>
                         <ul>
-                            <li>Crime</li>
-                            <li>Drama</li>
-                            <li>Action</li>
-                            <li>BlackComedy</li>
+                            @foreach (var tvshow in Model.TVShows)
+                            {
+                                <li>@tvshow.Title</li>
+                            }
                         </ul>
                     </div>
                 </div>

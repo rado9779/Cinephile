@@ -44,9 +44,10 @@
                     <div class="card-body">
                         <h2 class="card-title">Actors</h2>
                         <ul>
-                            <li>Bob Odenkirk</li>
-                            <li>Jonathan Banks</li>
-                            <li>Patrick Fabian</li>
+                            @foreach (var actor in Model.Actors)
+                            {
+                                <li>@actor.FirstName @actor.LastName</li>
+                            }
                         </ul>
                     </div>
                 </div>

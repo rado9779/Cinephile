@@ -2,10 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
+
     using Cinephile.Data.Models;
     using Cinephile.Services.Mapping;
+    using Cinephile.Web.ViewModels.Movies;
+    using Cinephile.Web.ViewModels.TVShows;
 
-    public class ActorViewModel : IMapFrom<Actor>
+    public class ActorViewModel : IMapFrom<Actor>, IMapFrom<ActorMovie>, IMapFrom<ActorTVShow>
     {
         public int Id { get; set; }
 
@@ -29,8 +32,8 @@
 
         public string Birthplace { get; set; }
 
-        public ICollection<ActorMovie> Movies { get; set; }
+        public IEnumerable<MovieViewModel> Movies { get; set; }
 
-        public ICollection<ActorTVShow> TVShows { get; set; }
+        public IEnumerable<TVShowViewModel> TVShows { get; set; }
     }
 }
