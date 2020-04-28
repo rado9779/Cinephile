@@ -66,6 +66,11 @@
         <span asp-validation-for="Country" class="text-danger"></span>
     </div>
     <div>
+        <label asp-for="ReleaseDate"></label>
+        <input asp-for="ReleaseDate" class="form-control bg-white" />
+        <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+    </div>
+    <div>
         <label asp-for="GenreId"></label>
         <select asp-for="GenreId" asp-items="genres" class="form-control bg-white"></select>
         <span asp-validation-for="GenreId" class="text-danger"></span>

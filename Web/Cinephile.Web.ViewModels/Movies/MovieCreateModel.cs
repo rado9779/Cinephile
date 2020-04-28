@@ -31,6 +31,8 @@
 
         public string Country { get; set; }
 
+        public DateTime ReleaseDate { get; set; }
+
         public ICollection<ActorMovie> Actors { get; set; }
 
         public int GenreId { get; set; }

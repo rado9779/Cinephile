@@ -76,13 +76,14 @@
             {
                 FirstName = input.FirstName,
                 LastName = input.LastName,
+                Birthdate = input.Birthdate,
                 Biography = input.Biography,
                 ImageUrl = input.ImageUrl,
-                HomePageLink = input.HomePageLink,
-                IMDBLink = input.IMDBLink,
-                FacebookLink = input.FacebookLink,
-                Birthdate = input.Birthdate,
                 Birthplace = input.Birthplace,
+                FacebookLink = input.FacebookLink,
+                HomePageLink = input.HomePageLink,
+                Gender = input.Gender,
+                IMDBLink = input.IMDBLink,
             };
 
             await this.actorsRepository.AddAsync(actor);
