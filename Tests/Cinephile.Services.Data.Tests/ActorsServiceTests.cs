@@ -175,7 +175,57 @@
             Assert.Equal(2, result);
         }
 
+        [Fact]
+        public async Task GetByActorsForPage_WithValidInput_ShouldReturnValidResult()
+        {
+            var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
+            await this.SeedData(dbContext);
 
+            var actorsRepository = new EfDeletableEntityRepository<Actor>(dbContext);
+
+            var service = new ActorsService(actorsRepository);
+
+            var result = service.GetByActorsForPage<ActorViewModel>(1, 1);
+
+            Assert.Single(result);
+        }
+
+        [Fact]
+        public async Task Edit_WithValidInput_ShouldReturnValidResult()
+        {
+            var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
+            await this.SeedData(dbContext);
+
+            var actorsRepository = new EfDeletableEntityRepository<Actor>(dbContext);
+            var service = new ActorsService(actorsRepository);
+
+
+            var viewModel = new ActorEditModel()
+            {
+                Id = 1,
+                FirstName = "Edited",
+            };
+
+            var result = service.Edit(viewModel);
+
+            Assert.Equal("Edited", viewModel.FirstName);
+        }
+
+        [Fact]
+        public async Task Delete_WithValidInput_ShouldReturnValidResult()
+        {
+            var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
+            await this.SeedData(dbContext);
+
+            var actorsRepository = new EfDeletableEntityRepository<Actor>(dbContext);
+            var service = new ActorsService(actorsRepository);
+
+            var actor = service.GetById<ActorEditModel>(1);
+
+            var result = service.Delete(actor);
+
+            Assert.Equal(1, dbContext.Actors.Count());
+        }
 
         private async Task SeedData(ApplicationDbContext dbContext)
         {
