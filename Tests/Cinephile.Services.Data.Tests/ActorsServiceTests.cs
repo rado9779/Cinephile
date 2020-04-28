@@ -138,7 +138,7 @@
         }
 
         [Fact]
-        public async Task GetAll_WithEmptyContext_ShouldReturnValidResult()
+        public async Task Create_WithValidInput_ShouldReturnValidResult()
         {
             var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
 
@@ -146,9 +146,33 @@
 
             var service = new ActorsService(actorsRepository);
 
-            var result = service.GetAll<ActorViewModel>().ToList();
+            var input = new ActorCreateModel()
+            {
+                FirstName = "Bob",
+                LastName = "Ross",
+                Gender = "Male",
+            };
 
-            Assert.Empty(result);
+            var actor = service.Create(input);
+            var result = service.GetByTitle<ActorViewModel>("Bob");
+
+            Assert.Equal("Ross", result.LastName);
+            Assert.Equal("Male", result.Gender);
+        }
+
+        [Fact]
+        public async Task GetActorsCount_WithValidInput_ShouldReturnValidResult()
+        {
+            var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
+            await this.SeedData(dbContext);
+
+            var actorsRepository = new EfDeletableEntityRepository<Actor>(dbContext);
+
+            var service = new ActorsService(actorsRepository);
+
+            var result = service.GetActorsCount();
+
+            Assert.Equal(2, result);
         }
 
 
