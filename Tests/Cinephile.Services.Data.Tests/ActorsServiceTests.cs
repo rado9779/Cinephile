@@ -44,7 +44,7 @@
         [InlineData(0)]
         [InlineData(-1)]
         [InlineData(111)]
-        public async Task GetById_WithInvalidInput_ShouldReturnInalidResult(int id)
+        public async Task GetById_WithInvalidInput_ShouldReturnInvalidResult(int id)
         {
             var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
             await this.SeedData(dbContext);
@@ -52,8 +52,6 @@
             var actorsRepository = new EfDeletableEntityRepository<Actor>(dbContext);
 
             var service = new ActorsService(actorsRepository);
-
-            var result = service.GetById<ActorViewModel>(id);
 
             Assert.Null(service.GetById<ActorViewModel>(id));
         }
