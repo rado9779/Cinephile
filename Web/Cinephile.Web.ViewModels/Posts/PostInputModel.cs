@@ -10,6 +10,7 @@
     public class PostInputModel : IMapTo<Post>
     {
         [Required]
+        [MaxLength(100)]
         public string Title { get; set; }
 
         [Required]
