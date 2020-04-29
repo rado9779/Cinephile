@@ -116,23 +116,27 @@
             var viewModel = this.postsService.GetById<PostEditViewModel>(id);
             viewModel.Categories = categories;
 
-            return this.View(viewModel);
+            if (this.userManager.GetUserId(this.User) == viewModel.UserId)
+            {
+                return this.View(viewModel);
+            }
+
+            return this.Redirect($"/Forum/Posts/ById/{viewModel.Id}");
         }
 
         [HttpPost]
         public async Task<IActionResult> Edit(PostEditViewModel input)
         {
-            if (input == null)
-            {
-                return this.NotFound();
-            }
-
             if (!this.ModelState.IsValid)
             {
                 return this.View(input);
             }
 
-            await this.postsService.Edit(input);
+            if (this.userManager.GetUserId(this.User) == input.UserId)
+            {
+                await this.postsService.Edit(input);
+            }
+
             return this.Redirect($"/Forum/Posts/ById/{input.Id}");
         }
 
@@ -143,7 +147,12 @@
             var viewModel = this.postsService.GetById<PostEditViewModel>(id);
             viewModel.Categories = categories;
 
-            return this.View(viewModel);
+            if (this.userManager.GetUserId(this.User) == viewModel.UserId)
+            {
+                return this.View(viewModel);
+            }
+
+            return this.Redirect($"/Forum/Posts/ById/{viewModel.Id}");
         }
 
         [HttpPost]
@@ -154,7 +163,11 @@
                 return this.View(input);
             }
 
-            await this.postsService.Delete(input);
+            if (this.userManager.GetUserId(this.User) == input.UserId)
+            {
+                await this.postsService.Edit(input);
+            }
+
             return this.Redirect($"/Forum/Forum");
         }
     }

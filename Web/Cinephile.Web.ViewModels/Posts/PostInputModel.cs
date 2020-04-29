@@ -17,6 +17,7 @@
 
         public string SanitizedContent => new HtmlSanitizer().Sanitize(this.Content);
 
+        [Required]
         public int CategoryId { get; set; }
 
         public IEnumerable<PostCategoriesViewModel> Categories { get; set; }

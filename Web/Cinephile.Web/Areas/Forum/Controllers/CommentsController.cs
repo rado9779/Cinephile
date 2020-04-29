@@ -35,7 +35,12 @@
         {
             var viewModel = this.commentsService.GetById<CommentEditModel>(id);
 
-            return this.View(viewModel);
+            if (this.userManager.GetUserId(this.User) == viewModel.UserId)
+            {
+                return this.View(viewModel);
+            }
+
+            return this.Redirect($"/Forum/Forum");
         }
 
         [HttpPost]
@@ -46,8 +51,12 @@
                 return this.View(input);
             }
 
-            await this.commentsService.Edit(input);
-            return this.Redirect($"/Forum/Forum");
+            if (this.userManager.GetUserId(this.User) == input.UserId)
+            {
+                await this.commentsService.Edit(input);
+            }
+
+            return this.Redirect($"/Forum/Comments/Edit/{input.Id}");
         }
 
         [HttpGet]
@@ -55,9 +64,12 @@
         {
             var viewModel = this.commentsService.GetById<CommentEditModel>(id);
 
-            var result = viewModel.PostId;
+            if (this.userManager.GetUserId(this.User) == viewModel.UserId)
+            {
+                return this.View(viewModel);
+            }
 
-            return this.View(viewModel);
+            return this.Redirect($"/Forum/Forum");
         }
 
         [HttpPost]
@@ -68,7 +80,11 @@
                 return this.View(input);
             }
 
-            await this.commentsService.Delete(input);
+            if (this.userManager.GetUserId(this.User) == input.UserId)
+            {
+                await this.commentsService.Delete(input);
+            }
+
             return this.Redirect($"/Forum/Forum");
         }
     }

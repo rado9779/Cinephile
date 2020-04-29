@@ -1,7 +1,7 @@
 ﻿@model Cinephile.Web.ViewModels.Comments.CommentEditModel
 
 
-<form method="post" asp-controller="Comments" asp-action="Edit">
+<form method="post" asp-area="Forum" asp-controller="Comments" asp-action="Edit">
     <div>
         <label asp-for="Content"></label>
         <textarea asp-for="Content" class="form-control"></textarea>
