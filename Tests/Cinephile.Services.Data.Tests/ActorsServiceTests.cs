@@ -1,10 +1,7 @@
 ﻿namespace Cinephile.Services.Data.Tests
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using System.Text;
     using System.Threading.Tasks;
 
     using Cinephile.Data;
@@ -75,7 +72,7 @@
         [InlineData(null)]
         [InlineData("")]
         [InlineData(" ")]
-        public async Task GetByName_WithInvalidInput_ShouldReturnInalidResult(string name)
+        public async Task GetByName_WithInvalidInput_ShouldReturnInvalidResult(string name)
         {
             var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
             await this.SeedData(dbContext);
@@ -101,7 +98,7 @@
 
             var result = service.GetAllByQuery<ActorViewModel>("1").ToList();
 
-            Assert.Equal(1, result.Count());
+            Assert.Single(result);
         }
 
         [Theory]
@@ -196,7 +193,6 @@
 
             var actorsRepository = new EfDeletableEntityRepository<Actor>(dbContext);
             var service = new ActorsService(actorsRepository);
-
 
             var viewModel = new ActorEditModel()
             {

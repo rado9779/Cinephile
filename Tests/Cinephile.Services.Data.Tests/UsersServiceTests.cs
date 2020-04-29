@@ -1,6 +1,5 @@
 ﻿namespace Cinephile.Services.Data.Tests
 {
-    using System;
     using System.Linq;
     using System.Reflection;
     using System.Threading.Tasks;

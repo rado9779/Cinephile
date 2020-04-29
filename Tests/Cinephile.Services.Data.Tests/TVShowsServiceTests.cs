@@ -11,16 +11,16 @@
     using Cinephile.Services.Data.Tests.Common;
     using Cinephile.Services.Mapping;
     using Cinephile.Web.ViewModels.Genres;
-    using Cinephile.Web.ViewModels.Movies;
+    using Cinephile.Web.ViewModels.TVShows;
     using Xunit;
 
-    public class MoviesServiceTests
+    public class TVShowsServiceTests
     {
-        public MoviesServiceTests()
+        public TVShowsServiceTests()
         {
             AutoMapperConfig.RegisterMappings(
-              typeof(Movie).GetTypeInfo().Assembly,
-              typeof(MovieViewModel).GetTypeInfo().Assembly);
+             typeof(TVShow).GetTypeInfo().Assembly,
+             typeof(TVShowViewModel).GetTypeInfo().Assembly);
         }
 
         [Fact]
@@ -29,11 +29,11 @@
             var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
             await this.SeedData(dbContext);
 
-            var moviesRepository = new EfDeletableEntityRepository<Movie>(dbContext);
+            var tvshowRepository = new EfDeletableEntityRepository<TVShow>(dbContext);
             var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
-            var service = new MoviesService(moviesRepository, genresRepository);
+            var service = new TVShowsService(tvshowRepository, genresRepository);
 
-            var result = service.GetById<MovieViewModel>(1);
+            var result = service.GetById<TVShowViewModel>(1);
 
             Assert.Equal(1, result.Id);
         }
@@ -48,11 +48,11 @@
             var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
             await this.SeedData(dbContext);
 
-            var moviesRepository = new EfDeletableEntityRepository<Movie>(dbContext);
+            var tvshowRepository = new EfDeletableEntityRepository<TVShow>(dbContext);
             var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
-            var service = new MoviesService(moviesRepository, genresRepository);
+            var service = new TVShowsService(tvshowRepository, genresRepository);
 
-            Assert.Null(service.GetById<MovieViewModel>(id));
+            Assert.Null(service.GetById<TVShowViewModel>(id));
         }
 
         [Fact]
@@ -61,11 +61,11 @@
             var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
             await this.SeedData(dbContext);
 
-            var moviesRepository = new EfDeletableEntityRepository<Movie>(dbContext);
+            var tvshowRepository = new EfDeletableEntityRepository<TVShow>(dbContext);
             var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
-            var service = new MoviesService(moviesRepository, genresRepository);
+            var service = new TVShowsService(tvshowRepository, genresRepository);
 
-            var result = service.GetByTitle<MovieViewModel>("1");
+            var result = service.GetByTitle<TVShowViewModel>("1");
             Assert.Equal("1", result.Title);
         }
 
@@ -78,26 +78,11 @@
             var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
             await this.SeedData(dbContext);
 
-            var moviesRepository = new EfDeletableEntityRepository<Movie>(dbContext);
+            var tvshowRepository = new EfDeletableEntityRepository<TVShow>(dbContext);
             var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
-            var service = new MoviesService(moviesRepository, genresRepository);
+            var service = new TVShowsService(tvshowRepository, genresRepository);
 
-            Assert.Null(service.GetByTitle<MovieViewModel>(title));
-        }
-
-        [Fact]
-        public async Task GetAll_WithValidInput_ShouldReturnValidResult()
-        {
-            var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
-            await this.SeedData(dbContext);
-
-            var moviesRepository = new EfDeletableEntityRepository<Movie>(dbContext);
-            var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
-            var service = new MoviesService(moviesRepository, genresRepository);
-
-            var result = service.GetAll<MovieViewModel>().ToList();
-
-            Assert.Equal(2, result.Count());
+            Assert.Null(service.GetByTitle<TVShowViewModel>(title));
         }
 
         [Fact]
@@ -106,11 +91,11 @@
             var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
             await this.SeedData(dbContext);
 
-            var moviesRepository = new EfDeletableEntityRepository<Movie>(dbContext);
+            var tvshowRepository = new EfDeletableEntityRepository<TVShow>(dbContext);
             var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
-            var service = new MoviesService(moviesRepository, genresRepository);
+            var service = new TVShowsService(tvshowRepository, genresRepository);
 
-            var result = service.GetAllByQuery<MovieViewModel>("1").ToList();
+            var result = service.GetAllByQuery<TVShowViewModel>("1").ToList();
 
             Assert.Single(result);
         }
@@ -122,11 +107,26 @@
             var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
             await this.SeedData(dbContext);
 
-            var moviesRepository = new EfDeletableEntityRepository<Movie>(dbContext);
+            var tvshowRepository = new EfDeletableEntityRepository<TVShow>(dbContext);
             var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
-            var service = new MoviesService(moviesRepository, genresRepository);
+            var service = new TVShowsService(tvshowRepository, genresRepository);
 
-            var result = service.GetAllByQuery<MovieViewModel>(title).ToList();
+            var result = service.GetAllByQuery<TVShowViewModel>(title).ToList();
+
+            Assert.Equal(2, result.Count());
+        }
+
+        [Fact]
+        public async Task GetAll_WithValidInput_ShouldReturnValidResult()
+        {
+            var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
+            await this.SeedData(dbContext);
+
+            var tvshowRepository = new EfDeletableEntityRepository<TVShow>(dbContext);
+            var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
+            var service = new TVShowsService(tvshowRepository, genresRepository);
+
+            var result = service.GetAll<TVShowViewModel>().ToList();
 
             Assert.Equal(2, result.Count());
         }
@@ -136,11 +136,12 @@
         {
             var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
             await this.SeedData(dbContext);
-            var moviesRepository = new EfDeletableEntityRepository<Movie>(dbContext);
-            var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
-            var service = new MoviesService(moviesRepository, genresRepository);
 
-            var input = new MovieCreateModel()
+            var tvshowRepository = new EfDeletableEntityRepository<TVShow>(dbContext);
+            var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
+            var service = new TVShowsService(tvshowRepository, genresRepository);
+
+            var input = new TVShowsCreateModel()
             {
                 Title = "Titanic",
                 Country = "USA",
@@ -148,7 +149,7 @@
             };
 
             var movie = service.Create(input);
-            var result = service.GetByTitle<MovieViewModel>("Titanic");
+            var result = service.GetByTitle<TVShowViewModel>("Titanic");
 
             Assert.Equal("USA", result.Country);
         }
@@ -158,11 +159,12 @@
         {
             var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
             await this.SeedData(dbContext);
-            var moviesRepository = new EfDeletableEntityRepository<Movie>(dbContext);
-            var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
-            var service = new MoviesService(moviesRepository, genresRepository);
 
-            var input = new MovieCreateModel()
+            var tvshowRepository = new EfDeletableEntityRepository<TVShow>(dbContext);
+            var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
+            var service = new TVShowsService(tvshowRepository, genresRepository);
+
+            var input = new TVShowsCreateModel()
             {
             };
 
@@ -174,11 +176,12 @@
         {
             var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
             await this.SeedData(dbContext);
-            var moviesRepository = new EfDeletableEntityRepository<Movie>(dbContext);
-            var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
-            var service = new MoviesService(moviesRepository, genresRepository);
 
-            var viewModel = new MovieEditModel()
+            var tvshowRepository = new EfDeletableEntityRepository<TVShow>(dbContext);
+            var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
+            var service = new TVShowsService(tvshowRepository, genresRepository);
+
+            var viewModel = new TVShowsEditModel()
             {
                 Title = "Edited",
             };
@@ -189,45 +192,48 @@
         }
 
         [Fact]
-        public async Task Delete_WithValidInput_ShouldReturnRemoveMovie()
+        public async Task Delete_WithValidInput_ShouldReturnRemoveTVShow()
         {
             var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
             await this.SeedData(dbContext);
-            var moviesRepository = new EfDeletableEntityRepository<Movie>(dbContext);
+
+            var tvshowRepository = new EfDeletableEntityRepository<TVShow>(dbContext);
             var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
-            var service = new MoviesService(moviesRepository, genresRepository);
+            var service = new TVShowsService(tvshowRepository, genresRepository);
 
-            var movie = service.GetById<MovieEditModel>(1);
+            var tvshow = service.GetById<TVShowsEditModel>(1);
 
-            var result = service.Delete(movie);
+            var result = service.Delete(tvshow);
 
-            Assert.Equal(1, dbContext.Movies.Count());
+            Assert.Equal(1, dbContext.TVShows.Count());
         }
 
         [Fact]
-        public async Task GetMoviesForPage_WithValidInput_ShouldReturnValidResult()
+        public async Task GetTVShowsForPage_WithValidInput_ShouldReturnValidResult()
         {
             var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
             await this.SeedData(dbContext);
-            var moviesRepository = new EfDeletableEntityRepository<Movie>(dbContext);
-            var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
-            var service = new MoviesService(moviesRepository, genresRepository);
 
-            var result = service.GetByMoviesForPage<MovieViewModel>(1, 1);
+            var tvshowRepository = new EfDeletableEntityRepository<TVShow>(dbContext);
+            var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
+            var service = new TVShowsService(tvshowRepository, genresRepository);
+
+            var result = service.GetTVShowsForPage<TVShowViewModel>(1, 1);
 
             Assert.Single(result);
         }
 
         [Fact]
-        public async Task GetMoviesCount_WithValidInput_ShouldReturnValidResult()
+        public async Task GetTVShowsCount_WithValidInput_ShouldReturnValidResult()
         {
             var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
             await this.SeedData(dbContext);
-            var moviesRepository = new EfDeletableEntityRepository<Movie>(dbContext);
-            var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
-            var service = new MoviesService(moviesRepository, genresRepository);
 
-            var result = service.GetMoviesCount();
+            var tvshowRepository = new EfDeletableEntityRepository<TVShow>(dbContext);
+            var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
+            var service = new TVShowsService(tvshowRepository, genresRepository);
+
+            var result = service.GetTVShowsCount();
 
             Assert.Equal(2, result);
         }
@@ -238,9 +244,9 @@
             var dbContext = ApplicationDbContextCreatorInMemory.InitializeContext();
             await this.SeedData(dbContext);
 
-            var moviesRepository = new EfDeletableEntityRepository<Movie>(dbContext);
+            var tvshowRepository = new EfDeletableEntityRepository<TVShow>(dbContext);
             var genresRepository = new EfDeletableEntityRepository<Genre>(dbContext);
-            var service = new MoviesService(moviesRepository, genresRepository);
+            var service = new TVShowsService(tvshowRepository, genresRepository);
 
             var result = service.GetAllGenres<GenreViewModel>().ToList();
 
@@ -249,13 +255,13 @@
 
         private async Task SeedData(ApplicationDbContext dbContext)
         {
-            dbContext.Movies.Add(new Movie
+            dbContext.TVShows.Add(new TVShow
             {
                 Id = 1,
                 Title = "1",
             });
 
-            dbContext.Movies.Add(new Movie
+            dbContext.TVShows.Add(new TVShow
             {
                 Id = 2,
                 Title = "2",

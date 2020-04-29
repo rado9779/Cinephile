@@ -1,6 +1,5 @@
 ﻿namespace Cinephile.Services.Data.Tests
 {
-    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -9,7 +8,6 @@
     using Cinephile.Data.Repositories;
     using Cinephile.Services.Data.Tests.Common;
     using Cinephile.Web.ViewModels.Categories;
-    using Cinephile.Web.ViewModels.Comments;
     using Xunit;
 
     public class CategoriesServiceTests
@@ -29,8 +27,6 @@
             Assert.Equal("People", result.Name);
             Assert.Equal(1, result.Id);
         }
-
-        // TODO: Test with Incorrect Input
 
         [Fact]
         public async Task GetAll_ShouldReturnAllCategories()
