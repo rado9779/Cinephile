@@ -58,7 +58,7 @@
                                     <a href="/Users/UserPosts/?username=@comment.UserUserName" style="text-decoration:none"><font color="#ffffff">@comment.UserUserName</font></a>
                                 </div>
                                 <div>
-                                    @comment.CreatedOn.ToString("dd/mm/yyyy HH:MM:ss")
+                                    @comment.CreatedOn.ToString("dd/MM/yyyy HH:mm")
                                 </div>
                                 <div>
                                     @if (this.User.Identity.Name == comment.UserUserName || this.User.IsInRole("Administrator"))

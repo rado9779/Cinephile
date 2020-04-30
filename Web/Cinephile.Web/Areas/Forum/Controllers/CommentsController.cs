@@ -55,7 +55,7 @@
 
             await this.commentsService.Edit(input);
 
-            return this.Redirect($"/Forum/Comments/Edit/{input.Id}");
+            return this.Redirect($"/Forum/Forum");
         }
 
         [HttpGet]
@@ -82,7 +82,6 @@
             }
 
             await this.commentsService.Delete(input);
-
             return this.Redirect($"/Forum/Forum");
         }
     }
