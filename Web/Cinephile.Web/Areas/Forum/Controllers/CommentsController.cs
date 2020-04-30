@@ -31,11 +31,13 @@
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
             var viewModel = this.commentsService.GetById<CommentEditModel>(id);
 
-            if (this.userManager.GetUserId(this.User) == viewModel.UserId)
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            if (user.Id == viewModel.UserId || this.User.IsInRole("Administrator"))
             {
                 return this.View(viewModel);
             }
@@ -51,20 +53,19 @@
                 return this.View(input);
             }
 
-            if (this.userManager.GetUserId(this.User) == input.UserId)
-            {
-                await this.commentsService.Edit(input);
-            }
+            await this.commentsService.Edit(input);
 
             return this.Redirect($"/Forum/Comments/Edit/{input.Id}");
         }
 
         [HttpGet]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var viewModel = this.commentsService.GetById<CommentEditModel>(id);
 
-            if (this.userManager.GetUserId(this.User) == viewModel.UserId)
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            if (user.Id == viewModel.UserId || this.User.IsInRole("Administrator"))
             {
                 return this.View(viewModel);
             }
@@ -80,10 +81,7 @@
                 return this.View(input);
             }
 
-            if (this.userManager.GetUserId(this.User) == input.UserId)
-            {
-                await this.commentsService.Delete(input);
-            }
+            await this.commentsService.Delete(input);
 
             return this.Redirect($"/Forum/Forum");
         }

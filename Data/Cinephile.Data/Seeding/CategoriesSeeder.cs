@@ -16,14 +16,14 @@
                 return;
             }
 
-            var categories = new List<(string Name, string ImageUrl)>
+            var categories = new List<(string Name, string ImageUrl, string Title, string Description)>
             {
-                ("Funny", "/StaticFiles/bring.png"),
-                ("Actors", "/StaticFiles/actor.png"),
-                ("Meetings", "/StaticFiles/teamwork.png"),
-                ("Movies", "/StaticFiles/cinema.png"),
-                ("TV-Series", "/StaticFiles/television.png"),
-                ("News", "/StaticFiles/newspaper.png"),
+                ("Funny", "/StaticFiles/bring.png","Funny","Funny"),
+                ("Actors", "/StaticFiles/actor.png","Actors","Actors"),
+                ("Meetings", "/StaticFiles/teamwork.png","Meetings","Meetings"),
+                ("Movies", "/StaticFiles/cinema.png","Movies","Movies"),
+                ("TV-Series", "/StaticFiles/television.png","TV-Series","TV-Series"),
+                ("News", "/StaticFiles/newspaper.png","News","News"),
             };
 
             foreach (var category in categories)
@@ -32,6 +32,8 @@
                 {
                     Name = category.Name,
                     ImageUrl = category.ImageUrl,
+                    Title = category.Title,
+                    Description = category.Description,
                 });
             }
         }

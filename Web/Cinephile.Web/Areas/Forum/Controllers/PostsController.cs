@@ -110,13 +110,15 @@
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
             var categories = this.categoriesService.GetAll<PostCategoriesViewModel>();
             var viewModel = this.postsService.GetById<PostEditViewModel>(id);
             viewModel.Categories = categories;
 
-            if (this.userManager.GetUserId(this.User) == viewModel.UserId)
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            if (user.Id == viewModel.UserId || this.User.IsInRole("Administrator"))
             {
                 return this.View(viewModel);
             }
@@ -132,27 +134,28 @@
                 return this.View(input);
             }
 
-            if (this.userManager.GetUserId(this.User) == input.UserId)
-            {
-                await this.postsService.Edit(input);
-            }
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            await this.postsService.Edit(input);
 
             return this.Redirect($"/Forum/Posts/ById/{input.Id}");
         }
 
         [HttpGet]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var categories = this.categoriesService.GetAll<PostCategoriesViewModel>();
             var viewModel = this.postsService.GetById<PostEditViewModel>(id);
             viewModel.Categories = categories;
 
-            if (this.userManager.GetUserId(this.User) == viewModel.UserId)
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            if (user.Id == viewModel.UserId || this.User.IsInRole("Administrator"))
             {
                 return this.View(viewModel);
             }
 
-            return this.Redirect($"/Forum/Posts/ById/{viewModel.Id}");
+            return this.Redirect($"/Forum/Forum");
         }
 
         [HttpPost]
@@ -163,10 +166,7 @@
                 return this.View(input);
             }
 
-            if (this.userManager.GetUserId(this.User) == input.UserId)
-            {
-                await this.postsService.Edit(input);
-            }
+            await this.postsService.Delete(input);
 
             return this.Redirect($"/Forum/Forum");
         }
